@@ -1,0 +1,8 @@
+region = "us-east-1"
+vpc_cidr = "10.0.0.0/16"
+subnet_cidr = "10.0.1.0/24"
+availability_zone = "us-east-1a"
+ami = "ami-0ed094fb1304fd857"
+instance_type = "t3.micro"
+security_group_name = "Kakfa_SG"
+user_data_script = "../scripts/Install_Kafka.sh"

@@ -1,0 +1,240 @@
+AWSTemplateFormatVersion: "2010-09-09"
+Description: >
+ Creating a Kafka Cluster using Cloud Formation.
+
+Parameters:
+  InstanceType:
+    Type: String
+    Default: t3.micro
+    Description: The "Size" and "Power" of the virtual computer. 't3.micro' is small and cheap.
+
+  KeyName:
+    Type: AWS::EC2::KeyPair::KeyName
+    Default: Demo-KeyPair
+    Description: The name of the Digital Key.
+
+# RESOURCES - These are the actual AWS will create.
+
+Resources:
+  
+  # --- THE PRIVATE NETWORK (VPC) ---
+  # Think of this as your own private Space.
+  KafkaVPC:
+    Type: AWS::EC2::VPC
+    Properties:
+      CidrBlock: 10.0.0.0/16
+      EnableDnsSupport: true
+      EnableDnsHostnames: true
+      Tags:
+        - Key: Name
+          Value: Kafka-Private-Network
+
+  # --- Subnet ---
+  # A specific section in your VPC.
+  KafkaSubnet:
+    Type: AWS::EC2::Subnet
+    Properties:
+      VpcId: !Ref KafkaVPC
+      CidrBlock: 10.0.1.0/24
+      MapPublicIpOnLaunch: true # Automatically give every computer an internet address.
+      Tags:
+        - Key: Name
+          Value: Kafka-Subnet
+
+  # --- Internet Gateway ---
+
+  InternetGateway:
+    Type: AWS::EC2::InternetGateway
+    Properties:
+      Tags:
+        - Key: Name
+          Value: Kafka-Internet-Router
+
+  VPCGatewayAttachment:
+    Type: AWS::EC2::VPCGatewayAttachment
+    Properties:
+      VpcId: !Ref KafkaVPC
+      InternetGatewayId: !Ref InternetGateway
+
+  # --- Route Table ---
+  # It is Like Map for the Traffic.
+  RouteTable:
+    Type: AWS::EC2::RouteTable
+    Properties:
+      VpcId: !Ref KafkaVPC
+
+  PublicRoute:
+    Type: AWS::EC2::Route
+    DependsOn: VPCGatewayAttachment
+    Properties:
+      RouteTableId: !Ref RouteTable
+      DestinationCidrBlock: 0.0.0.0/0
+      GatewayId: !Ref InternetGateway
+
+  SubnetRouteTableAssociation:
+    Type: AWS::EC2::SubnetRouteTableAssociation
+    Properties:
+      SubnetId: !Ref KafkaSubnet
+      RouteTableId: !Ref RouteTable
+
+  # --- Security Groups ---
+  
+  # 1. SSH Guard: Allows you to remotely control the computer.
+  SSHSG:
+    Type: AWS::EC2::SecurityGroup
+    Properties:
+      GroupDescription: Allow SSH login (Port 22)
+      VpcId: !Ref KafkaVPC
+      SecurityGroupIngress:
+        - IpProtocol: tcp
+          FromPort: 22
+          ToPort: 22
+          CidrIp: 0.0.0.0/0 # Open to everyone with the key
+
+  # It is like a co-ordinator which allows you to talk to the zookeeper
+  ZookeeperSG:
+    Type: AWS::EC2::SecurityGroup
+    Properties:
+      GroupDescription: Internal Zookeeper communication
+      VpcId: !Ref KafkaVPC
+      SecurityGroupIngress:
+        - IpProtocol: tcp
+          FromPort: 2181
+          ToPort: 2181
+          CidrIp: 10.0.0.0/16 # Only from inside the private network
+        - IpProtocol: tcp
+          FromPort: 2888
+          ToPort: 2888
+          CidrIp: 10.0.0.0/16
+        - IpProtocol: tcp
+          FromPort: 3888
+          ToPort: 3888
+          CidrIp: 10.0.0.0/16
+
+  # For Kafka
+  KafkaSG:
+    Type: AWS::EC2::SecurityGroup
+    Properties:
+      GroupDescription: Allow Kafka data (Port 9092)
+      VpcId: !Ref KafkaVPC
+      SecurityGroupIngress:
+        - IpProtocol: tcp
+          FromPort: 9092
+          ToPort: 9092
+          CidrIp: 0.0.0.0/0 # Open for applications to send data
+
+  # --- THE VIRTUAL COMPUTERS (EC2 Instances) ---
+  
+  KafkaNode1:
+    Type: AWS::EC2::Instance
+    Properties:
+      InstanceType: !Ref InstanceType
+      ImageId: ami-0ed094fb1304fd857 # The "Operating System" (Amazon Linux)
+      KeyName: !Ref KeyName
+      SubnetId: !Ref KafkaSubnet
+      SecurityGroupIds:
+        - !Ref SSHSG
+        - !Ref ZookeeperSG
+        - !Ref KafkaSG
+      Tags:
+        - Key: Name
+          Value: Kafka-EC2-1
+      UserData:
+        Fn::Base64: !Sub |
+          #!/bin/bash
+          # Step 1: Update the computer and install Java (Kafka needs Java to run)
+          yum update -y
+          yum install -y java-17-amazon-corretto wget
+
+          # Step 2: Go to the main folder
+          cd /home/ec2-user
+          
+          # Step 3: Download the Kafka software from the internet
+          wget https://downloads.apache.org/kafka/3.9.2/kafka_2.13-3.9.2.tgz
+          
+          # Step 4: "Unzip" or unpack the software files
+          tar -xzf kafka_2.13-3.9.2.tgz
+          chown -R ec2-user:ec2-user kafka_2.13-3.9.2
+          
+          # Step 5: Enter the folder where the software lives
+          cd kafka_2.13-3.9.2
+
+          # Step 6: Start the "Coordinator" (Zookeeper) in the background
+          sudo -u ec2-user nohup bin/zookeeper-server-start.sh config/zookeeper.properties > zookeeper.log 2>&1 &
+          
+          # Step 7: Wait a few seconds for the Coordinator to wake up
+          sleep 15
+
+          # Step 8: Start the "Main Data Server" (Kafka) in the background
+          sudo -u ec2-user nohup bin/kafka-server-start.sh config/server.properties > kafka.log 2>&1 &
+
+
+  KafkaNode2:
+    Type: AWS::EC2::Instance
+    Properties:
+      InstanceType: !Ref InstanceType
+      ImageId: ami-0ed094fb1304fd857
+      KeyName: !Ref KeyName
+      SubnetId: !Ref KafkaSubnet
+      SecurityGroupIds:
+        - !Ref SSHSG
+        - !Ref ZookeeperSG
+        - !Ref KafkaSG
+      Tags:
+        - Key: Name
+          Value: Kafka-EC2-2
+      UserData:
+        Fn::Base64: !Sub |
+          #!/bin/bash
+          yum update -y
+          yum install -y java-17-amazon-corretto wget
+          cd /home/ec2-user
+          wget https://downloads.apache.org/kafka/3.9.2/kafka_2.13-3.9.2.tgz
+          tar -xzf kafka_2.13-3.9.2.tgz
+          chown -R ec2-user:ec2-user kafka_2.13-3.9.2
+          cd kafka_2.13-3.9.2
+          sudo -u ec2-user nohup bin/zookeeper-server-start.sh config/zookeeper.properties > zookeeper.log 2>&1 &
+          sleep 15
+          sudo -u ec2-user nohup bin/kafka-server-start.sh config/server.properties > kafka.log 2>&1 &
+
+  
+  KafkaNode3:
+    Type: AWS::EC2::Instance
+    Properties:
+      InstanceType: !Ref InstanceType
+      ImageId: ami-0ed094fb1304fd857
+      KeyName: !Ref KeyName
+      SubnetId: !Ref KafkaSubnet
+      SecurityGroupIds:
+        - !Ref SSHSG
+        - !Ref ZookeeperSG
+        - !Ref KafkaSG
+      Tags:
+        - Key: Name
+          Value: Kafka-EC2-3
+      UserData:
+        Fn::Base64: !Sub |
+          #!/bin/bash
+          yum update -y
+          yum install -y java-17-amazon-corretto wget
+          cd /home/ec2-user
+          wget https://downloads.apache.org/kafka/3.9.2/kafka_2.13-3.9.2.tgz
+          tar -xzf kafka_2.13-3.9.2.tgz
+          chown -R ec2-user:ec2-user kafka_2.13-3.9.2
+          cd kafka_2.13-3.9.2
+          sudo -u ec2-user nohup bin/zookeeper-server-start.sh config/zookeeper.properties > zookeeper.log 2>&1 &
+          sleep 15
+          sudo -u ec2-user nohup bin/kafka-server-start.sh config/server.properties > kafka.log 2>&1 &
+
+# OUTPUTS - This tells you the "Results" (like IP addresses) once finished.
+
+Outputs:
+  Node1PublicIP:
+    Description: The Internet Address (IP) of Node 1
+    Value: !GetAtt KafkaNode1.PublicIp
+  Node2PublicIP:
+    Description: The Internet Address (IP) of Node 2
+    Value: !GetAtt KafkaNode2.PublicIp
+  Node3PublicIP:
+    Description: The Internet Address (IP) of Node 3
+    Value: !GetAtt KafkaNode3.PublicIp
