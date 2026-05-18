@@ -1,13 +1,17 @@
 import boto3
+import config
+import json
 import time
 
 
 # This class acts as a blueprint to build our Kafka setup on AWS from scratch
 class KafkaAWSInfra:
-    def __init__(self, region="us-east-1"):
+    def __init__(self):
         # We start by picking which AWS "location" (region) we want to build in
-        self.ec2 = boto3.resource("ec2", region_name=region)
-        self.client = boto3.client("ec2", region_name=region)
+        self.ec2 = boto3.resource("ec2", region_name=config.REGION)
+        self.client = boto3.client("ec2", region_name=config.REGION)
+        self.secrets_client = boto3.client("secretsmanager", region_name=config.REGION)
+        self.iam_client = boto3.client("iam", region_name=config.REGION)
 
         # These are placeholders where we'll store the IDs of the parts we build
         self.vpc = None
@@ -16,31 +20,33 @@ class KafkaAWSInfra:
         self.route_table = None
         self.security_group = None
         self.instances = []
+        self.secret_arn = None
+        self.instance_profile_name = None
 
     # ---------------- VPC ----------------
     # This creates a private space for our project to live in
-    def create_vpc(self, cidr="10.0.0.0/16", name="Kafka-VPC-1"):
-        self.vpc = self.ec2.create_vpc(CidrBlock=cidr)
+    def create_vpc(self):
+        self.vpc = self.ec2.create_vpc(CidrBlock=config.VPC_CIDR)
         self.vpc.wait_until_available() 
 
         # Enable features so our computers can have easy-to-read names instead of just numbers
         self.vpc.modify_attribute(EnableDnsSupport={'Value': True})
         self.vpc.modify_attribute(EnableDnsHostnames={'Value': True})
 
-        self.vpc.create_tags(Tags=[{"Key": "Name", "Value": name}])
+        self.vpc.create_tags(Tags=[{"Key": "Name", "Value": config.VPC_NAME}])
 
         print("VPC created:", self.vpc.id)
         return self.vpc
 
     # ---------------- Internet Gateway ----------------
     # This builds a "front door" for our private space so it can connect to the internet
-    def create_internet_gateway(self, name="Kafka-IGW-1"):
+    def create_internet_gateway(self):
         self.internet_gateway = self.ec2.create_internet_gateway()
         self.internet_gateway.create_tags(
             Tags = [
                 {
                     "Key":"Name",
-                    "Value":name
+                    "Value":config.IGW_NAME
                 }
             ]
         )
@@ -54,23 +60,23 @@ class KafkaAWSInfra:
 
     # ---------------- Subnet ----------------
     # This creates a specific room inside VPC
-    def create_subnet(self, cidr="10.0.1.0/24", name="Kafka-Subnet-1"):
+    def create_subnet(self):
         self.subnet = self.ec2.create_subnet(
-            CidrBlock=cidr,
+            CidrBlock=config.SUBNET_CIDR,
             VpcId=self.vpc.id
         )
 
         # Make sure any computer we put in this room automatically gets an internet address
         self.subnet.meta.client.modify_subnet_attribute(
             SubnetId=self.subnet.id,
-            MapPublicIpOnLaunch={'Value': True}
+            MapPublicIpOnLaunch={'Value': False}
         )
 
         self.subnet.create_tags(
             Tags=[
                 {
                     "Key": "Name",
-                    "Value": name
+                    "Value": config.SUBNET_NAME
                 }
             ]
         )
@@ -81,7 +87,7 @@ class KafkaAWSInfra:
 
     # ---------------- Route Table ----------------
     # This creates a map that tells traffic how to get to the internet
-    def create_route_table(self, name="Kafka-Route_Table-1"):
+    def create_route_table(self):
         self.route_table = self.vpc.create_route_table()
 
         self.route_table.create_route(
@@ -98,7 +104,7 @@ class KafkaAWSInfra:
             Tags=[
                 {
                     "Key": "Name",
-                    "Value": name
+                    "Value": config.ROUTE_TABLE_NAME
                 }
             ]
         )
@@ -109,9 +115,9 @@ class KafkaAWSInfra:
 
     # ---------------- Security Group ----------------
     # This acts like a "security guard" that checks who is allowed to enter or leave
-    def create_security_group(self, name="Kafka-Security-Group-1"):
+    def create_security_group(self):
         self.security_group = self.ec2.create_security_group(
-            GroupName=name,
+            GroupName=config.SECURITY_GROUP_NAME,
             Description="Security group for Kafka instances",
             VpcId=self.vpc.id
         )
@@ -120,7 +126,7 @@ class KafkaAWSInfra:
             Tags=[
                 {
                     "Key": "Name",
-                    "Value": name
+                    "Value": config.SECURITY_GROUP_NAME
                 }
             ]
         )
@@ -131,25 +137,25 @@ class KafkaAWSInfra:
                 # Allow Remote access (SSH)
                 {
                     "IpProtocol": "tcp",
-                    "FromPort": 22,
-                    "ToPort": 22,
-                    "IpRanges": [{"CidrIp": "0.0.0.0/0"}]
+                    "FromPort": config.SSH_PORT,
+                    "ToPort": config.SSH_PORT,
+                    "IpRanges": [{"CidrIp": config.ALLOWED_IP}]
                 },
 
                 # Allow Kafka traffic
                 {
                     "IpProtocol": "tcp",
-                    "FromPort": 9092,
-                    "ToPort": 9092,
-                    "IpRanges": [{"CidrIp": "0.0.0.0/0"}]
+                    "FromPort": config.KAFKA_PORT,
+                    "ToPort": config.KAFKA_PORT,
+                    "UserIdGroupPairs": [{"GroupId": self.security_group.id}]
                 },
 
                 # Allow Zookeeper traffic 
                 {
                     "IpProtocol": "tcp",
-                    "FromPort": 2181,
-                    "ToPort": 2181,
-                    "IpRanges": [{"CidrIp": "0.0.0.0/0"}]
+                    "FromPort": config.ZOOKEEPER_PORT,
+                    "ToPort": config.ZOOKEEPER_PORT,
+                    "UserIdGroupPairs": [{"GroupId": self.security_group.id}]
                 }
             ]
         )
@@ -160,51 +166,102 @@ class KafkaAWSInfra:
     # ---------------- User Data ----------------
     # This is a list of setup instructions for the EC2 instances to follow as soon as they turn on
     def get_user_data(self):
-        return """#!/bin/bash
-# 1. Update the computer's software
-yum update -y
-# 2. Install Java (needed to run Kafka)
-yum install -y java-17-amazon-corretto wget
+        with open("user_data.sh", "r") as file:
+            return file.read()
+    
+    # ---------------- Secret Manager ---------------
+    def create_kafka_secret(self):
+        secret_value = {
+            "kafka_username": config.KAFKA_USERNAME,
+            "kafka_password": config.KAFKA_PASSWORD
+        }
 
-cd /home/ec2-user
+        response = self.secrets_client.create_secret(
+            Name = config.KAFKA_SECRET_NAME,
+            Description = "Kafka credentials used by EC2",
+            SecretString = json.dumps(secret_value)
+        )
 
-# 3. Download the Kafka software from the internet
-wget https://downloads.apache.org/kafka/3.9.2/kafka_2.13-3.9.2.tgz
-# 4. Unpack the software
-tar -xzf kafka_2.13-3.9.2.tgz
+        self.secret_arn = response["ARN"]
 
-cd kafka_2.13-3.9.2
+        print("Kafka Secret Created:", self.secret_arn)
+        return self.secret_arn
+    
+    # ---------------- IAM Role ---------------------
 
-# 5. Start Zookeeper (the coordinator) in the background
-nohup bin/zookeeper-server-start.sh config/zookeeper.properties > zookeeper.log 2>&1 &
-sleep 10
+    def create_ec2_role(self):
+        role_name = config.EC2_ROLE_NAME
+        self.instance_profile_name = config.INSTANCE_PROFILE_NAME
 
-# 6. Configure Kafka to be reachable from the internet (important for testing!)
-PUBLIC_IP=$(curl -s http://169.254.169.254/latest/meta-data/public-ipv4)
-echo "advertised.listeners=PLAINTEXT://$PUBLIC_IP:9092" >> config/server.properties
+        role_policy = {
+            "Version" : "2012-10-17",
+            "Statement" : [
+                {
+                    "Effect":"Allow",
+                    "Principal":{
+                        "Service" : "ec2.amazonaws.com",
+                    },
+                    "Action" : "sts:AssumeRole"
+                }
+            ]
+        }
 
-# 7. Start the Kafka server itself in the background
-nohup bin/kafka-server-start.sh config/server.properties > kafka.log 2>&1 &
-"""
+        self.iam_client.create_role(
+            RoleName = role_name,
+            AssumeRolePolicyDocument = json.dumps(role_policy)
+        )
+
+        policy_document = {
+            "Version" : "2012-10-17",
+            "Statement" : [
+                {
+                    "Effect" : "Allow",
+                    "Action" : [
+                        "secretemanager:GetSecretValue"
+                    ],
+                    "Resource":self.secret_arn
+                }
+            ]
+        }
+
+        self.iam_client.put_role_policy(
+            RoleName = role_name,
+            PolicyName = "KafkaSecretReadPolicy",
+            PolicyDocument  = json.dumps(policy_document)
+        )
+
+        self.iam_client.create_instance_profile(
+            InstanceProfileName = self.instance_profile_name
+        )
+
+        self.iam_client.add_role_to_instance_profile(
+            InstanceProfileName = self.instance_profile_name,
+            RoleName = role_name
+        )
+
+        time.sleep(10)
+
+        print("EC2 IAM Role and Instance profile created.")
 
     # ---------------- EC2 Instances ----------------
     # This starts up our virtual computers(servers) in subnet
-    def launch_instances(self, ami="ami-0ed094fb1304fd857",
-                         instance_type="t3.micro",
-                         count=3):
+    def launch_instances(self):
 
         self.instances = self.ec2.create_instances(
-            ImageId=ami,
-            MinCount=count,
-            MaxCount=count,
-            InstanceType=instance_type,
+            ImageId=config.AMI_ID,
+            MinCount=config.INSTANCE_COUNT,
+            MaxCount=config.INSTANCE_COUNT,
+            InstanceType=config.INSTANCE_TYPE,
             SubnetId=self.subnet.id,
             SecurityGroupIds=[self.security_group.id],
+            IamInstanceProfile = {
+                "Name" : self.instance_profile_name
+            },
             UserData=self.get_user_data(), # Hand over the setup instructions
             TagSpecifications=[
                 {
                     "ResourceType": "instance",
-                    "Tags": [{"Key": "Name", "Value": "Kafka-EC2"}]
+                    "Tags": [{"Key": "Name", "Value": config.INSTANCE_NAME}]
                 }
             ]
         )
@@ -222,6 +279,9 @@ nohup bin/kafka-server-start.sh config/server.properties > kafka.log 2>&1 &
 
         print("Kafka Cluster Created Successfully")
 
+
+
+
     # ---------------- RUN ALL ----------------
     # This runs all the steps above in the correct order
     def deploy(self):
@@ -230,12 +290,10 @@ nohup bin/kafka-server-start.sh config/server.properties > kafka.log 2>&1 &
         self.create_subnet()
         self.create_route_table()
         self.create_security_group()
+        
+        self.create_kafka_secret()
+        self.create_ec2_role()
+
         self.launch_instances()
 
 
-# ---------------- MAIN EXECUTION ----------------
-if __name__ == "__main__":
-    # Prepare the building tools for the specific AWS location
-    infra = KafkaAWSInfra(region="us-east-1")
-    # Kick off the construction process
-    infra.deploy()
