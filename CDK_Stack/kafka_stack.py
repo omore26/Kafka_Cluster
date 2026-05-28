@@ -7,6 +7,7 @@ from aws_cdk import (
     aws_ec2 as ec2,
     aws_iam as iam,
     aws_secretsmanager as secretsmanager,
+    RemovalPolicy,
 )
 from constructs import Construct
 import config
@@ -79,7 +80,8 @@ class KafkaStack(Stack):
             secret_object_value={
                 "kafka_username": SecretValue.unsafe_plain_text(config.KAFKA_USERNAME),
                 "kafka_password": SecretValue.unsafe_plain_text(config.KAFKA_PASSWORD),
-            }
+            },
+            removal_policy = RemovalPolicy.DESTROY
         )
 
         # Role for SSM Access and secret retrieval
