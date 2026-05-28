@@ -1,0 +1,35 @@
+# Configuration parameters for Kafka AWS Infrastructure CDK Stack
+
+REGION = "us-east-1"
+
+VPC_CIDR = "10.0.0.0/16"
+VPC_NAME = "Kafka-VPC-1"
+
+SUBNET_CIDR = "10.0.1.0/24"
+SUBNET_NAME = "Kafka-Subnet-1"
+
+# Note: CDK automatically creates and manages Internet Gateway and Route Tables for a public subnet, 
+# but we can customize names or tags accordingly.
+IGW_NAME = "Kafka-IGW-1"
+ROUTE_TABLE_NAME = "Kafka-Route-Table-1"
+
+SECURITY_GROUP_NAME = "Kafka-Security-Group-1"
+
+AMI_ID = "ami-0ed094fb1304fd857"
+INSTANCE_TYPE = "t3.micro"
+INSTANCE_COUNT = 3
+INSTANCE_NAME = "Kafka-EC2"
+
+SSH_PORT = 22
+KAFKA_PORT = 9092
+ZOOKEEPER_PORT = 2181
+
+ALLOWED_IP = "122.170.195.33/32"
+
+KAFKA_SECRET_NAME = "CDK-Kafka-Secret-2"
+
+KAFKA_USERNAME = "kafka_CDK_1"
+KAFKA_PASSWORD = "VRKafkaCDK@2627   "
+
+EC2_ROLE_NAME = "KafkaEC2Role2"
+INSTANCE_PROFILE_NAME = "KafkaEC2Instance2"

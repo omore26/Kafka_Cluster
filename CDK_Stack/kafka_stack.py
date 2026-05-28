@@ -1,0 +1,132 @@
+import os
+from aws_cdk import (
+    Stack,
+    SecretValue,
+    CfnOutput,
+    Tags,
+    aws_ec2 as ec2,
+    aws_iam as iam,
+    aws_secretsmanager as secretsmanager,
+)
+from constructs import Construct
+import config
+
+class KafkaStack(Stack):
+
+    def __init__(self, scope: Construct, construct_id: str, **kwargs) -> None:
+        super().__init__(scope, construct_id, **kwargs)
+
+        # VPC with public subnet for nat and private subnets for kafka nodes
+        self.vpc = ec2.Vpc(
+            self, "KafkaVpc",
+            vpc_name=config.VPC_NAME,
+            ip_addresses=ec2.IpAddresses.cidr(config.VPC_CIDR),
+            enable_dns_hostnames=True,
+            enable_dns_support=True,
+            nat_gateways=1,
+            max_azs=1,
+            subnet_configuration=[
+                ec2.SubnetConfiguration(
+                    name="Kafka-Public-Subnet-1",
+                    subnet_type=ec2.SubnetType.PUBLIC,
+                    cidr_mask=24
+                ),
+                ec2.SubnetConfiguration(
+                    name=config.SUBNET_NAME,
+                    subnet_type=ec2.SubnetType.PRIVATE_WITH_EGRESS,
+                    cidr_mask=24
+                )
+            ]
+        )
+
+        Tags.of(self.vpc).add("Name", config.VPC_NAME)
+
+        # Security Rules for Kafka cluster communication
+        self.security_group = ec2.SecurityGroup(
+            self, "KafkaSecurityGroup",
+            vpc=self.vpc,
+            security_group_name=config.SECURITY_GROUP_NAME,
+            description="Security group for Kafka instances",
+            allow_all_outbound=True
+        )
+        Tags.of(self.security_group).add("Name", config.SECURITY_GROUP_NAME)
+
+        # Allow SSH access only from the specified IP in the config
+        self.security_group.add_ingress_rule(
+            peer=ec2.Peer.ipv4(config.ALLOWED_IP),
+            connection=ec2.Port.tcp(config.SSH_PORT),
+            description="Allow SSH access from allowed IP"
+        )
+
+        # Allow internal Kafka traffic
+        self.security_group.add_ingress_rule(
+            peer=self.security_group,
+            connection=ec2.Port.tcp(config.KAFKA_PORT),
+            description="Allow Kafka traffic within the security group"
+        )
+
+        # Allow internal Zookeeper traffic
+        self.security_group.add_ingress_rule(
+            peer=self.security_group,
+            connection=ec2.Port.tcp(config.ZOOKEEPER_PORT),
+            description="Allow Zookeeper traffic within the security group"
+        )
+
+        # Store kafka credentials centrally
+        self.secret = secretsmanager.Secret(
+            self, "KafkaSecret",
+            description="Kafka credentials used by EC2",
+            secret_object_value={
+                "kafka_username": SecretValue.unsafe_plain_text(config.KAFKA_USERNAME),
+                "kafka_password": SecretValue.unsafe_plain_text(config.KAFKA_PASSWORD),
+            }
+        )
+
+        # Role for SSM Access and secret retrieval
+        self.role = iam.Role(
+            self, "KafkaEC2Role",
+            assumed_by=iam.ServicePrincipal("ec2.amazonaws.com")
+        )
+        
+        # Add AWS SSM Managed Instance Core policy to allow secure connection to private instances
+        self.role.add_managed_policy(
+            iam.ManagedPolicy.from_aws_managed_policy_name("AmazonSSMManagedInstanceCore")
+        )
+        
+        self.secret.grant_read(self.role)
+
+        # Load startup script
+        user_data_path = os.path.join(os.path.dirname(__file__), "user_data.sh")
+        with open(user_data_path, "r") as f:
+            user_data_template = f.read()
+
+        # Launch Instaces
+        self.instances = []
+        for i in range(config.INSTANCE_COUNT):
+            user_data_content = user_data_template.replace("DYNAMIC_SECRET_NAME", self.secret.secret_name)
+            ud = ec2.UserData.custom(user_data_content)
+
+            instance = ec2.Instance(
+                self, f"KafkaInstance{i+1}",
+                instance_name=f"{config.INSTANCE_NAME}-{i+1}",
+                instance_type=ec2.InstanceType(config.INSTANCE_TYPE),
+                machine_image=ec2.MachineImage.generic_linux({
+                    config.REGION: config.AMI_ID
+                }),
+                vpc=self.vpc,
+
+                # Launch instances in the private subnet
+                vpc_subnets=ec2.SubnetSelection(
+                    subnet_type=ec2.SubnetType.PRIVATE_WITH_EGRESS
+                ),
+                security_group=self.security_group,
+                role=self.role,
+                user_data=ud
+            )
+            self.instances.append(instance)
+
+            CfnOutput(
+                self, f"Node{i+1}PrivateIP",
+                value=instance.instance_private_ip,
+                description=f"The Private IP Address of Node {i+1}"
+            )
