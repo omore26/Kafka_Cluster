@@ -1,0 +1,860 @@
+{
+ "Description": "Stack deploying Kafka Cluster with VPC, Subnet, EC2, and Secrets Manager",
+ "Resources": {
+  "KafkaVpcA73E6177": {
+   "Type": "AWS::EC2::VPC",
+   "Properties": {
+    "CidrBlock": "10.0.0.0/16",
+    "EnableDnsHostnames": true,
+    "EnableDnsSupport": true,
+    "InstanceTenancy": "default",
+    "Tags": [
+     {
+      "Key": "Name",
+      "Value": "Kafka-VPC"
+     }
+    ]
+   },
+   "Metadata": {
+    "aws:cdk:path": "KafkaStack/KafkaVpc/Resource"
+   }
+  },
+  "KafkaVpcKafkaPublicSubnetSubnet1Subnet135AD5E9": {
+   "Type": "AWS::EC2::Subnet",
+   "Properties": {
+    "AvailabilityZone": {
+     "Fn::Select": [
+      0,
+      {
+       "Fn::GetAZs": ""
+      }
+     ]
+    },
+    "CidrBlock": "10.0.0.0/24",
+    "MapPublicIpOnLaunch": true,
+    "Tags": [
+     {
+      "Key": "aws-cdk:subnet-name",
+      "Value": "Kafka-Public-Subnet"
+     },
+     {
+      "Key": "aws-cdk:subnet-type",
+      "Value": "Public"
+     },
+     {
+      "Key": "Name",
+      "Value": "KafkaStack/KafkaVpc/Kafka-Public-SubnetSubnet1"
+     }
+    ],
+    "VpcId": {
+     "Ref": "KafkaVpcA73E6177"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "KafkaStack/KafkaVpc/Kafka-Public-SubnetSubnet1/Subnet"
+   }
+  },
+  "KafkaVpcKafkaPublicSubnetSubnet1RouteTableBFE8066D": {
+   "Type": "AWS::EC2::RouteTable",
+   "Properties": {
+    "Tags": [
+     {
+      "Key": "Name",
+      "Value": "KafkaStack/KafkaVpc/Kafka-Public-SubnetSubnet1"
+     }
+    ],
+    "VpcId": {
+     "Ref": "KafkaVpcA73E6177"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "KafkaStack/KafkaVpc/Kafka-Public-SubnetSubnet1/RouteTable"
+   }
+  },
+  "KafkaVpcKafkaPublicSubnetSubnet1RouteTableAssociation84113F68": {
+   "Type": "AWS::EC2::SubnetRouteTableAssociation",
+   "Properties": {
+    "RouteTableId": {
+     "Ref": "KafkaVpcKafkaPublicSubnetSubnet1RouteTableBFE8066D"
+    },
+    "SubnetId": {
+     "Ref": "KafkaVpcKafkaPublicSubnetSubnet1Subnet135AD5E9"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "KafkaStack/KafkaVpc/Kafka-Public-SubnetSubnet1/RouteTableAssociation"
+   }
+  },
+  "KafkaVpcKafkaPublicSubnetSubnet1DefaultRoute8C851D40": {
+   "Type": "AWS::EC2::Route",
+   "Properties": {
+    "DestinationCidrBlock": "0.0.0.0/0",
+    "GatewayId": {
+     "Ref": "KafkaVpcIGW9271E801"
+    },
+    "RouteTableId": {
+     "Ref": "KafkaVpcKafkaPublicSubnetSubnet1RouteTableBFE8066D"
+    }
+   },
+   "DependsOn": [
+    "KafkaVpcVPCGW74F90166"
+   ],
+   "Metadata": {
+    "aws:cdk:path": "KafkaStack/KafkaVpc/Kafka-Public-SubnetSubnet1/DefaultRoute"
+   }
+  },
+  "KafkaVpcKafkaPublicSubnetSubnet1EIPF8E4D478": {
+   "Type": "AWS::EC2::EIP",
+   "Properties": {
+    "Domain": "vpc",
+    "Tags": [
+     {
+      "Key": "Name",
+      "Value": "KafkaStack/KafkaVpc/Kafka-Public-SubnetSubnet1"
+     }
+    ]
+   },
+   "Metadata": {
+    "aws:cdk:path": "KafkaStack/KafkaVpc/Kafka-Public-SubnetSubnet1/EIP"
+   }
+  },
+  "KafkaVpcKafkaPublicSubnetSubnet1NATGateway57CF2108": {
+   "Type": "AWS::EC2::NatGateway",
+   "Properties": {
+    "AllocationId": {
+     "Fn::GetAtt": [
+      "KafkaVpcKafkaPublicSubnetSubnet1EIPF8E4D478",
+      "AllocationId"
+     ]
+    },
+    "SubnetId": {
+     "Ref": "KafkaVpcKafkaPublicSubnetSubnet1Subnet135AD5E9"
+    },
+    "Tags": [
+     {
+      "Key": "Name",
+      "Value": "KafkaStack/KafkaVpc/Kafka-Public-SubnetSubnet1"
+     }
+    ]
+   },
+   "DependsOn": [
+    "KafkaVpcKafkaPublicSubnetSubnet1DefaultRoute8C851D40",
+    "KafkaVpcKafkaPublicSubnetSubnet1RouteTableAssociation84113F68"
+   ],
+   "Metadata": {
+    "aws:cdk:path": "KafkaStack/KafkaVpc/Kafka-Public-SubnetSubnet1/NATGateway"
+   }
+  },
+  "KafkaVpcKafkaPrivateSubnetSubnet1Subnet65CCD355": {
+   "Type": "AWS::EC2::Subnet",
+   "Properties": {
+    "AvailabilityZone": {
+     "Fn::Select": [
+      0,
+      {
+       "Fn::GetAZs": ""
+      }
+     ]
+    },
+    "CidrBlock": "10.0.1.0/24",
+    "MapPublicIpOnLaunch": false,
+    "Tags": [
+     {
+      "Key": "aws-cdk:subnet-name",
+      "Value": "Kafka-Private-Subnet"
+     },
+     {
+      "Key": "aws-cdk:subnet-type",
+      "Value": "Private"
+     },
+     {
+      "Key": "Name",
+      "Value": "KafkaStack/KafkaVpc/Kafka-Private-SubnetSubnet1"
+     }
+    ],
+    "VpcId": {
+     "Ref": "KafkaVpcA73E6177"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "KafkaStack/KafkaVpc/Kafka-Private-SubnetSubnet1/Subnet"
+   }
+  },
+  "KafkaVpcKafkaPrivateSubnetSubnet1RouteTable7FE0469B": {
+   "Type": "AWS::EC2::RouteTable",
+   "Properties": {
+    "Tags": [
+     {
+      "Key": "Name",
+      "Value": "KafkaStack/KafkaVpc/Kafka-Private-SubnetSubnet1"
+     }
+    ],
+    "VpcId": {
+     "Ref": "KafkaVpcA73E6177"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "KafkaStack/KafkaVpc/Kafka-Private-SubnetSubnet1/RouteTable"
+   }
+  },
+  "KafkaVpcKafkaPrivateSubnetSubnet1RouteTableAssociationDF0C282A": {
+   "Type": "AWS::EC2::SubnetRouteTableAssociation",
+   "Properties": {
+    "RouteTableId": {
+     "Ref": "KafkaVpcKafkaPrivateSubnetSubnet1RouteTable7FE0469B"
+    },
+    "SubnetId": {
+     "Ref": "KafkaVpcKafkaPrivateSubnetSubnet1Subnet65CCD355"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "KafkaStack/KafkaVpc/Kafka-Private-SubnetSubnet1/RouteTableAssociation"
+   }
+  },
+  "KafkaVpcKafkaPrivateSubnetSubnet1DefaultRoute8FAE9431": {
+   "Type": "AWS::EC2::Route",
+   "Properties": {
+    "DestinationCidrBlock": "0.0.0.0/0",
+    "NatGatewayId": {
+     "Ref": "KafkaVpcKafkaPublicSubnetSubnet1NATGateway57CF2108"
+    },
+    "RouteTableId": {
+     "Ref": "KafkaVpcKafkaPrivateSubnetSubnet1RouteTable7FE0469B"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "KafkaStack/KafkaVpc/Kafka-Private-SubnetSubnet1/DefaultRoute"
+   }
+  },
+  "KafkaVpcIGW9271E801": {
+   "Type": "AWS::EC2::InternetGateway",
+   "Properties": {
+    "Tags": [
+     {
+      "Key": "Name",
+      "Value": "Kafka-VPC"
+     }
+    ]
+   },
+   "Metadata": {
+    "aws:cdk:path": "KafkaStack/KafkaVpc/IGW"
+   }
+  },
+  "KafkaVpcVPCGW74F90166": {
+   "Type": "AWS::EC2::VPCGatewayAttachment",
+   "Properties": {
+    "InternetGatewayId": {
+     "Ref": "KafkaVpcIGW9271E801"
+    },
+    "VpcId": {
+     "Ref": "KafkaVpcA73E6177"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "KafkaStack/KafkaVpc/VPCGW"
+   }
+  },
+  "KafkaSecurityGroup4BEFFE40": {
+   "Type": "AWS::EC2::SecurityGroup",
+   "Properties": {
+    "GroupDescription": "Security group for Kafka instances",
+    "GroupName": "Kafka-SG",
+    "SecurityGroupEgress": [
+     {
+      "CidrIp": "0.0.0.0/0",
+      "Description": "Allow all outbound traffic by default",
+      "IpProtocol": "-1"
+     }
+    ],
+    "SecurityGroupIngress": [
+     {
+      "CidrIp": "223.228.46.254/32",
+      "Description": "Allow SSH access from allowed IP",
+      "FromPort": 22,
+      "IpProtocol": "tcp",
+      "ToPort": 22
+     }
+    ],
+    "Tags": [
+     {
+      "Key": "Name",
+      "Value": "Kafka-SG"
+     }
+    ],
+    "VpcId": {
+     "Ref": "KafkaVpcA73E6177"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "KafkaStack/KafkaSecurityGroup/Resource"
+   }
+  },
+  "KafkaSecurityGroupfromKafkaStackKafkaSecurityGroupBDB4E8F39092E2C1C17E": {
+   "Type": "AWS::EC2::SecurityGroupIngress",
+   "Properties": {
+    "Description": "Allow Kafka traffic within the security group",
+    "FromPort": 9092,
+    "GroupId": {
+     "Fn::GetAtt": [
+      "KafkaSecurityGroup4BEFFE40",
+      "GroupId"
+     ]
+    },
+    "IpProtocol": "tcp",
+    "SourceSecurityGroupId": {
+     "Fn::GetAtt": [
+      "KafkaSecurityGroup4BEFFE40",
+      "GroupId"
+     ]
+    },
+    "ToPort": 9092
+   },
+   "Metadata": {
+    "aws:cdk:path": "KafkaStack/KafkaSecurityGroup/from KafkaStackKafkaSecurityGroupBDB4E8F3:9092"
+   }
+  },
+  "KafkaSecurityGroupfromKafkaStackKafkaSecurityGroupBDB4E8F321818A98ACA4": {
+   "Type": "AWS::EC2::SecurityGroupIngress",
+   "Properties": {
+    "Description": "Allow Zookeeper traffic within the security group",
+    "FromPort": 2181,
+    "GroupId": {
+     "Fn::GetAtt": [
+      "KafkaSecurityGroup4BEFFE40",
+      "GroupId"
+     ]
+    },
+    "IpProtocol": "tcp",
+    "SourceSecurityGroupId": {
+     "Fn::GetAtt": [
+      "KafkaSecurityGroup4BEFFE40",
+      "GroupId"
+     ]
+    },
+    "ToPort": 2181
+   },
+   "Metadata": {
+    "aws:cdk:path": "KafkaStack/KafkaSecurityGroup/from KafkaStackKafkaSecurityGroupBDB4E8F3:2181"
+   }
+  },
+  "KafkaSecret78EF3770": {
+   "Type": "AWS::SecretsManager::Secret",
+   "Properties": {
+    "Description": "Kafka credentials used by EC2",
+    "GenerateSecretString": {
+     "ExcludePunctuation": true,
+     "GenerateStringKey": "kafka_password",
+     "SecretStringTemplate": "{\"kafka_username\":\"kafkaadmin\"}"
+    },
+    "Name": "Kafka-Credentials"
+   },
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "KafkaStack/KafkaSecret/Resource"
+   }
+  },
+  "KafkaEC2Role22866699": {
+   "Type": "AWS::IAM::Role",
+   "Properties": {
+    "AssumeRolePolicyDocument": {
+     "Statement": [
+      {
+       "Action": "sts:AssumeRole",
+       "Effect": "Allow",
+       "Principal": {
+        "Service": "ec2.amazonaws.com"
+       }
+      }
+     ],
+     "Version": "2012-10-17"
+    },
+    "ManagedPolicyArns": [
+     {
+      "Fn::Join": [
+       "",
+       [
+        "arn:",
+        {
+         "Ref": "AWS::Partition"
+        },
+        ":iam::aws:policy/AmazonSSMManagedInstanceCore"
+       ]
+      ]
+     }
+    ]
+   },
+   "Metadata": {
+    "aws:cdk:path": "KafkaStack/KafkaEC2Role/Resource"
+   }
+  },
+  "KafkaEC2RoleDefaultPolicy0BDACE69": {
+   "Type": "AWS::IAM::Policy",
+   "Properties": {
+    "PolicyDocument": {
+     "Statement": [
+      {
+       "Action": [
+        "secretsmanager:DescribeSecret",
+        "secretsmanager:GetSecretValue"
+       ],
+       "Effect": "Allow",
+       "Resource": {
+        "Ref": "KafkaSecret78EF3770"
+       }
+      }
+     ],
+     "Version": "2012-10-17"
+    },
+    "PolicyName": "KafkaEC2RoleDefaultPolicy0BDACE69",
+    "Roles": [
+     {
+      "Ref": "KafkaEC2Role22866699"
+     }
+    ]
+   },
+   "Metadata": {
+    "aws:cdk:path": "KafkaStack/KafkaEC2Role/DefaultPolicy/Resource"
+   }
+  },
+  "KafkaInstance1InstanceProfile9FF41903": {
+   "Type": "AWS::IAM::InstanceProfile",
+   "Properties": {
+    "Roles": [
+     {
+      "Ref": "KafkaEC2Role22866699"
+     }
+    ]
+   },
+   "Metadata": {
+    "aws:cdk:path": "KafkaStack/KafkaInstance1/InstanceProfile"
+   }
+  },
+  "KafkaInstance19E932E3C": {
+   "Type": "AWS::EC2::Instance",
+   "Properties": {
+    "AvailabilityZone": {
+     "Fn::Select": [
+      0,
+      {
+       "Fn::GetAZs": ""
+      }
+     ]
+    },
+    "IamInstanceProfile": {
+     "Ref": "KafkaInstance1InstanceProfile9FF41903"
+    },
+    "ImageId": {
+     "Ref": "SsmParameterValueawsserviceamiamazonlinuxlatestal2023amikernel61x8664C96584B6F00A464EAD1953AFF4B05118Parameter"
+    },
+    "InstanceType": "t3.micro",
+    "SecurityGroupIds": [
+     {
+      "Fn::GetAtt": [
+       "KafkaSecurityGroup4BEFFE40",
+       "GroupId"
+      ]
+     }
+    ],
+    "SubnetId": {
+     "Ref": "KafkaVpcKafkaPrivateSubnetSubnet1Subnet65CCD355"
+    },
+    "Tags": [
+     {
+      "Key": "Name",
+      "Value": "Kafka-EC2-1"
+     }
+    ],
+    "UserData": {
+     "Fn::Base64": {
+      "Fn::Join": [
+       "",
+       [
+        "#!/bin/bash\n# 1. Update the computer's software\nyum update -y\n# 2. Install Java (needed to run Kafka)\nyum install -y java-17-amazon-corretto wget\n\ncd /home/ec2-user\n\n# 3. Download the Kafka software from the internet\nwget https://downloads.apache.org/kafka/3.9.2/kafka_2.13-3.9.2.tgz\n# 4. Unpack the software\ntar -xzf kafka_2.13-3.9.2.tgz\n\ncd kafka_2.13-3.9.2\n\n# 5. Start Zookeeper (the coordinator) in the background\nnohup bin/zookeeper-server-start.sh config/zookeeper.properties > zookeeper.log 2>&1 &\n# wait for zookeeper to Start\nsleep 10\n\n# 6. Configure Kafka with private IP for internal network communication\nPRIVATE_IP=$(curl -s http://169.254.169.254/latest/meta-data/local-ipv4)\necho \"advertised.listeners=PLAINTEXT://$PRIVATE_IP:9092\" >> config/server.properties\n\n# 7. Start the Kafka server itself in the background\nnohup bin/kafka-server-start.sh config/server.properties > kafka.log 2>&1 &\n\n# Fetch Kafka secret securely from AWS Secrets Manager using dynamic secret name placeholder\nSECRET_VALUE=$(aws secretsmanager get-secret-value \\\n  --secret-id ",
+        {
+         "Fn::Join": [
+          "-",
+          [
+           {
+            "Fn::Select": [
+             0,
+             {
+              "Fn::Split": [
+               "-",
+               {
+                "Fn::Select": [
+                 6,
+                 {
+                  "Fn::Split": [
+                   ":",
+                   {
+                    "Ref": "KafkaSecret78EF3770"
+                   }
+                  ]
+                 }
+                ]
+               }
+              ]
+             }
+            ]
+           },
+           {
+            "Fn::Select": [
+             1,
+             {
+              "Fn::Split": [
+               "-",
+               {
+                "Fn::Select": [
+                 6,
+                 {
+                  "Fn::Split": [
+                   ":",
+                   {
+                    "Ref": "KafkaSecret78EF3770"
+                   }
+                  ]
+                 }
+                ]
+               }
+              ]
+             }
+            ]
+           }
+          ]
+         ]
+        },
+        " \\\n  --region us-east-1 \\\n  --query SecretString \\\n  --output text)\n\n# Extract Kafka username and password from the secret\nKAFKA_USERNAME=$(echo $SECRET_VALUE | python3 -c \"import sys, json; print(json.load(sys.stdin)['kafka_username'])\")\nKAFKA_PASSWORD=$(echo $SECRET_VALUE | python3 -c \"import sys, json; print(json.load(sys.stdin)['kafka_password'])\")\n\necho \"Kafka username fetched from Secrets Manager\"\n"
+       ]
+      ]
+     }
+    }
+   },
+   "DependsOn": [
+    "KafkaEC2RoleDefaultPolicy0BDACE69",
+    "KafkaEC2Role22866699"
+   ],
+   "Metadata": {
+    "aws:cdk:path": "KafkaStack/KafkaInstance1/Resource"
+   }
+  },
+  "KafkaInstance2InstanceProfile2127FB31": {
+   "Type": "AWS::IAM::InstanceProfile",
+   "Properties": {
+    "Roles": [
+     {
+      "Ref": "KafkaEC2Role22866699"
+     }
+    ]
+   },
+   "Metadata": {
+    "aws:cdk:path": "KafkaStack/KafkaInstance2/InstanceProfile"
+   }
+  },
+  "KafkaInstance2571554EC": {
+   "Type": "AWS::EC2::Instance",
+   "Properties": {
+    "AvailabilityZone": {
+     "Fn::Select": [
+      0,
+      {
+       "Fn::GetAZs": ""
+      }
+     ]
+    },
+    "IamInstanceProfile": {
+     "Ref": "KafkaInstance2InstanceProfile2127FB31"
+    },
+    "ImageId": {
+     "Ref": "SsmParameterValueawsserviceamiamazonlinuxlatestal2023amikernel61x8664C96584B6F00A464EAD1953AFF4B05118Parameter"
+    },
+    "InstanceType": "t3.micro",
+    "SecurityGroupIds": [
+     {
+      "Fn::GetAtt": [
+       "KafkaSecurityGroup4BEFFE40",
+       "GroupId"
+      ]
+     }
+    ],
+    "SubnetId": {
+     "Ref": "KafkaVpcKafkaPrivateSubnetSubnet1Subnet65CCD355"
+    },
+    "Tags": [
+     {
+      "Key": "Name",
+      "Value": "Kafka-EC2-2"
+     }
+    ],
+    "UserData": {
+     "Fn::Base64": {
+      "Fn::Join": [
+       "",
+       [
+        "#!/bin/bash\n# 1. Update the computer's software\nyum update -y\n# 2. Install Java (needed to run Kafka)\nyum install -y java-17-amazon-corretto wget\n\ncd /home/ec2-user\n\n# 3. Download the Kafka software from the internet\nwget https://downloads.apache.org/kafka/3.9.2/kafka_2.13-3.9.2.tgz\n# 4. Unpack the software\ntar -xzf kafka_2.13-3.9.2.tgz\n\ncd kafka_2.13-3.9.2\n\n# 5. Start Zookeeper (the coordinator) in the background\nnohup bin/zookeeper-server-start.sh config/zookeeper.properties > zookeeper.log 2>&1 &\n# wait for zookeeper to Start\nsleep 10\n\n# 6. Configure Kafka with private IP for internal network communication\nPRIVATE_IP=$(curl -s http://169.254.169.254/latest/meta-data/local-ipv4)\necho \"advertised.listeners=PLAINTEXT://$PRIVATE_IP:9092\" >> config/server.properties\n\n# 7. Start the Kafka server itself in the background\nnohup bin/kafka-server-start.sh config/server.properties > kafka.log 2>&1 &\n\n# Fetch Kafka secret securely from AWS Secrets Manager using dynamic secret name placeholder\nSECRET_VALUE=$(aws secretsmanager get-secret-value \\\n  --secret-id ",
+        {
+         "Fn::Join": [
+          "-",
+          [
+           {
+            "Fn::Select": [
+             0,
+             {
+              "Fn::Split": [
+               "-",
+               {
+                "Fn::Select": [
+                 6,
+                 {
+                  "Fn::Split": [
+                   ":",
+                   {
+                    "Ref": "KafkaSecret78EF3770"
+                   }
+                  ]
+                 }
+                ]
+               }
+              ]
+             }
+            ]
+           },
+           {
+            "Fn::Select": [
+             1,
+             {
+              "Fn::Split": [
+               "-",
+               {
+                "Fn::Select": [
+                 6,
+                 {
+                  "Fn::Split": [
+                   ":",
+                   {
+                    "Ref": "KafkaSecret78EF3770"
+                   }
+                  ]
+                 }
+                ]
+               }
+              ]
+             }
+            ]
+           }
+          ]
+         ]
+        },
+        " \\\n  --region us-east-1 \\\n  --query SecretString \\\n  --output text)\n\n# Extract Kafka username and password from the secret\nKAFKA_USERNAME=$(echo $SECRET_VALUE | python3 -c \"import sys, json; print(json.load(sys.stdin)['kafka_username'])\")\nKAFKA_PASSWORD=$(echo $SECRET_VALUE | python3 -c \"import sys, json; print(json.load(sys.stdin)['kafka_password'])\")\n\necho \"Kafka username fetched from Secrets Manager\"\n"
+       ]
+      ]
+     }
+    }
+   },
+   "DependsOn": [
+    "KafkaEC2RoleDefaultPolicy0BDACE69",
+    "KafkaEC2Role22866699"
+   ],
+   "Metadata": {
+    "aws:cdk:path": "KafkaStack/KafkaInstance2/Resource"
+   }
+  },
+  "KafkaInstance3InstanceProfile88614436": {
+   "Type": "AWS::IAM::InstanceProfile",
+   "Properties": {
+    "Roles": [
+     {
+      "Ref": "KafkaEC2Role22866699"
+     }
+    ]
+   },
+   "Metadata": {
+    "aws:cdk:path": "KafkaStack/KafkaInstance3/InstanceProfile"
+   }
+  },
+  "KafkaInstance3C2DEBC5B": {
+   "Type": "AWS::EC2::Instance",
+   "Properties": {
+    "AvailabilityZone": {
+     "Fn::Select": [
+      0,
+      {
+       "Fn::GetAZs": ""
+      }
+     ]
+    },
+    "IamInstanceProfile": {
+     "Ref": "KafkaInstance3InstanceProfile88614436"
+    },
+    "ImageId": {
+     "Ref": "SsmParameterValueawsserviceamiamazonlinuxlatestal2023amikernel61x8664C96584B6F00A464EAD1953AFF4B05118Parameter"
+    },
+    "InstanceType": "t3.micro",
+    "SecurityGroupIds": [
+     {
+      "Fn::GetAtt": [
+       "KafkaSecurityGroup4BEFFE40",
+       "GroupId"
+      ]
+     }
+    ],
+    "SubnetId": {
+     "Ref": "KafkaVpcKafkaPrivateSubnetSubnet1Subnet65CCD355"
+    },
+    "Tags": [
+     {
+      "Key": "Name",
+      "Value": "Kafka-EC2-3"
+     }
+    ],
+    "UserData": {
+     "Fn::Base64": {
+      "Fn::Join": [
+       "",
+       [
+        "#!/bin/bash\n# 1. Update the computer's software\nyum update -y\n# 2. Install Java (needed to run Kafka)\nyum install -y java-17-amazon-corretto wget\n\ncd /home/ec2-user\n\n# 3. Download the Kafka software from the internet\nwget https://downloads.apache.org/kafka/3.9.2/kafka_2.13-3.9.2.tgz\n# 4. Unpack the software\ntar -xzf kafka_2.13-3.9.2.tgz\n\ncd kafka_2.13-3.9.2\n\n# 5. Start Zookeeper (the coordinator) in the background\nnohup bin/zookeeper-server-start.sh config/zookeeper.properties > zookeeper.log 2>&1 &\n# wait for zookeeper to Start\nsleep 10\n\n# 6. Configure Kafka with private IP for internal network communication\nPRIVATE_IP=$(curl -s http://169.254.169.254/latest/meta-data/local-ipv4)\necho \"advertised.listeners=PLAINTEXT://$PRIVATE_IP:9092\" >> config/server.properties\n\n# 7. Start the Kafka server itself in the background\nnohup bin/kafka-server-start.sh config/server.properties > kafka.log 2>&1 &\n\n# Fetch Kafka secret securely from AWS Secrets Manager using dynamic secret name placeholder\nSECRET_VALUE=$(aws secretsmanager get-secret-value \\\n  --secret-id ",
+        {
+         "Fn::Join": [
+          "-",
+          [
+           {
+            "Fn::Select": [
+             0,
+             {
+              "Fn::Split": [
+               "-",
+               {
+                "Fn::Select": [
+                 6,
+                 {
+                  "Fn::Split": [
+                   ":",
+                   {
+                    "Ref": "KafkaSecret78EF3770"
+                   }
+                  ]
+                 }
+                ]
+               }
+              ]
+             }
+            ]
+           },
+           {
+            "Fn::Select": [
+             1,
+             {
+              "Fn::Split": [
+               "-",
+               {
+                "Fn::Select": [
+                 6,
+                 {
+                  "Fn::Split": [
+                   ":",
+                   {
+                    "Ref": "KafkaSecret78EF3770"
+                   }
+                  ]
+                 }
+                ]
+               }
+              ]
+             }
+            ]
+           }
+          ]
+         ]
+        },
+        " \\\n  --region us-east-1 \\\n  --query SecretString \\\n  --output text)\n\n# Extract Kafka username and password from the secret\nKAFKA_USERNAME=$(echo $SECRET_VALUE | python3 -c \"import sys, json; print(json.load(sys.stdin)['kafka_username'])\")\nKAFKA_PASSWORD=$(echo $SECRET_VALUE | python3 -c \"import sys, json; print(json.load(sys.stdin)['kafka_password'])\")\n\necho \"Kafka username fetched from Secrets Manager\"\n"
+       ]
+      ]
+     }
+    }
+   },
+   "DependsOn": [
+    "KafkaEC2RoleDefaultPolicy0BDACE69",
+    "KafkaEC2Role22866699"
+   ],
+   "Metadata": {
+    "aws:cdk:path": "KafkaStack/KafkaInstance3/Resource"
+   }
+  },
+  "CDKMetadata": {
+   "Type": "AWS::CDK::Metadata",
+   "Properties": {
+    "Analytics": "v2:deflate64:H4sIAAAAAAAA/31Py07DMBD8lt5dA6GIc1WhKhewEtQr2phtu21iR+s1URTl31Hi0tw4zUOj2dlMZy+v+nEFXVjb7+u6pkoPpYC9KujC14A208OhtWp3dAezUyZWNdkyVg5l8hZW+Cj4CVWNi7942xC8JRDy7h6eyFtuJngH2YNgB70yTD8guBTnTpAd3gNpyU1tRcCeG3SiSrSRSfo9+9jOG/41cndiDEHlLgg4i+lU4qMKaBklNODghKyHcta3EkYZFUGjh8Knd2c0viY771vYX6Nhf6Qax1EVGHzkdM8AQ4OCPImPKG2UUZlezt49POunjd6sLoFozdEJNaiLhL/qLPKLtQEAAA=="
+   },
+   "Metadata": {
+    "aws:cdk:path": "KafkaStack/CDKMetadata/Default"
+   }
+  }
+ },
+ "Parameters": {
+  "SsmParameterValueawsserviceamiamazonlinuxlatestal2023amikernel61x8664C96584B6F00A464EAD1953AFF4B05118Parameter": {
+   "Type": "AWS::SSM::Parameter::Value<AWS::EC2::Image::Id>",
+   "Default": "/aws/service/ami-amazon-linux-latest/al2023-ami-kernel-6.1-x86_64"
+  },
+  "BootstrapVersion": {
+   "Type": "AWS::SSM::Parameter::Value<String>",
+   "Default": "/cdk-bootstrap/hnb659fds/version",
+   "Description": "Version of the CDK Bootstrap resources in this environment, automatically retrieved from SSM Parameter Store. [cdk:skip]"
+  }
+ },
+ "Outputs": {
+  "Node1PrivateIP": {
+   "Description": "The Private IP Address of Node 1",
+   "Value": {
+    "Fn::GetAtt": [
+     "KafkaInstance19E932E3C",
+     "PrivateIp"
+    ]
+   }
+  },
+  "Node2PrivateIP": {
+   "Description": "The Private IP Address of Node 2",
+   "Value": {
+    "Fn::GetAtt": [
+     "KafkaInstance2571554EC",
+     "PrivateIp"
+    ]
+   }
+  },
+  "Node3PrivateIP": {
+   "Description": "The Private IP Address of Node 3",
+   "Value": {
+    "Fn::GetAtt": [
+     "KafkaInstance3C2DEBC5B",
+     "PrivateIp"
+    ]
+   }
+  }
+ },
+ "Rules": {
+  "CheckBootstrapVersion": {
+   "Assertions": [
+    {
+     "Assert": {
+      "Fn::Not": [
+       {
+        "Fn::Contains": [
+         [
+          "1",
+          "2",
+          "3",
+          "4",
+          "5"
+         ],
+         {
+          "Ref": "BootstrapVersion"
+         }
+        ]
+       }
+      ]
+     },
+     "AssertDescription": "CDK bootstrap stack version 6 required. Please run 'cdk bootstrap' with a recent version of the CDK CLI."
+    }
+   ]
+  }
+ }
+}

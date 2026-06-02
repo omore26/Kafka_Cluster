@@ -52,4 +52,4 @@ The deployment workflow performs the following steps:
 * AWS Secrets Manager
 * AWS Systems Manager (SSM)
 * AWS CDK
-* GitHub Actions
+* GitHub Action

@@ -1,0 +1,21 @@
+{
+  "version": "53.0.0",
+  "files": {
+    "3e3d8def35b13c93fb15c9c11bb2d5c0b1a21d8bf8b0825961dc54bbce4c6c44": {
+      "displayName": "KafkaStack Template",
+      "source": {
+        "path": "KafkaStack.template.json",
+        "packaging": "file"
+      },
+      "destinations": {
+        "current_account-us-east-1-718f73af": {
+          "bucketName": "cdk-hnb659fds-assets-${AWS::AccountId}-us-east-1",
+          "objectKey": "3e3d8def35b13c93fb15c9c11bb2d5c0b1a21d8bf8b0825961dc54bbce4c6c44.json",
+          "region": "us-east-1",
+          "assumeRoleArn": "arn:${AWS::Partition}:iam::${AWS::AccountId}:role/cdk-hnb659fds-file-publishing-role-${AWS::AccountId}-us-east-1"
+        }
+      }
+    }
+  },
+  "dockerImages": {}
+}
