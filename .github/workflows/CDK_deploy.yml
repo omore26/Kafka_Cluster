@@ -1,0 +1,55 @@
+name: Kafka CDK Deployment
+
+run-name: Deploy Kafka CDK Stack
+
+on:
+  push:
+    branches:
+      - develop
+
+jobs:
+  cdk-deploy:
+    runs-on: ubuntu-latest
+
+    defaults:
+      run:
+        working-directory: ./CDK_Stack
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+        
+      - name: Install AWS CDK
+        run: npm install -g aws-cdk
+
+      - name: Install Python Dependencies
+        run:  |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+      
+      - name: Configure AWS Credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-session-token: ${{ secrets.AWS_SESSION_TOKEN }}
+          aws-region: us-east-1
+
+      - name: Verify AWS Login
+        run: aws sts get-caller-identity
+      
+      - name: CDK Synth
+        run: cdk synth
+      
+      - name: CDK Deploy
+        run: cdk deploy KafkaStack --require-approval never

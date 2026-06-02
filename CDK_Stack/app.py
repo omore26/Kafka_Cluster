@@ -1,12 +1,14 @@
 #!/usr/bin/env python3
-from aws_cdk import App
-from kafka_stack import KafkaStack
+import aws_cdk as cdk
+import config
+from Stacks.kafka_stack import KafkaStack
 
-app = App()
+app = cdk.App()
 
 
 KafkaStack(
     app, "KafkaStack",
+    env = cdk.Environment(region=config.REGION),
     description="Stack deploying Kafka Cluster with VPC, Subnet, EC2, and Secrets Manager"
 )
 
