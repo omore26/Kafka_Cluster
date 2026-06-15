@@ -62,8 +62,8 @@ class KafkaStack(Stack):
 
         # Allow SSH access only from the specified IP in the config
         self.security_group.add_ingress_rule(
-            # peer=ec2.Peer.ipv4(f"{my_ip}/32"),
-            peer=ec2.Peer.any_ipv4(),
+            peer=ec2.Peer.ipv4(f"{my_ip}/32"),
+            # peer=ec2.Peer.any_ipv4(),
             connection=ec2.Port.tcp(config.SSH_PORT),
             description="Allow SSH access from allowed IP"
         )
