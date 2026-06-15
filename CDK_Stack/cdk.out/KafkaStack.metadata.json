@@ -3,11 +3,11 @@
     {
       "type": "aws:cdk:creationStack",
       "data": [
-        "Kernel._Kernel_create (C:\\Users\\OMKARM~1\\AppData\\Local\\Temp\\tmpyrpzwcv0\\lib\\program.js:1:61273)",
-        "Kernel.create (C:\\Users\\OMKARM~1\\AppData\\Local\\Temp\\tmpyrpzwcv0\\lib\\program.js:1:52004)",
-        "KernelHost.processRequest (C:\\Users\\OMKARM~1\\AppData\\Local\\Temp\\tmpyrpzwcv0\\lib\\program.js:1:212822)",
-        "KernelHost.run (C:\\Users\\OMKARM~1\\AppData\\Local\\Temp\\tmpyrpzwcv0\\lib\\program.js:1:211877)",
-        "Immediate._onImmediate (C:\\Users\\OMKARM~1\\AppData\\Local\\Temp\\tmpyrpzwcv0\\lib\\program.js:1:211921)",
+        "Kernel._Kernel_create (C:\\Users\\OMKARM~1\\AppData\\Local\\Temp\\tmpvtqh50wf\\lib\\program.js:1:61273)",
+        "Kernel.create (C:\\Users\\OMKARM~1\\AppData\\Local\\Temp\\tmpvtqh50wf\\lib\\program.js:1:52004)",
+        "KernelHost.processRequest (C:\\Users\\OMKARM~1\\AppData\\Local\\Temp\\tmpvtqh50wf\\lib\\program.js:1:212822)",
+        "KernelHost.run (C:\\Users\\OMKARM~1\\AppData\\Local\\Temp\\tmpvtqh50wf\\lib\\program.js:1:211877)",
+        "Immediate._onImmediate (C:\\Users\\OMKARM~1\\AppData\\Local\\Temp\\tmpvtqh50wf\\lib\\program.js:1:211921)",
         "...node internals..."
       ]
     }
@@ -21,9 +21,9 @@
       "type": "aws:cdk:creationStack",
       "data": [
         "...new Instance2 in aws-cdk-lib...",
-        "Kernel._Kernel_create (C:\\Users\\OMKARM~1\\AppData\\Local\\Temp\\tmpyrpzwcv0\\lib\\program.js:1:61273)",
-        "Kernel.create (C:\\Users\\OMKARM~1\\AppData\\Local\\Temp\\tmpyrpzwcv0\\lib\\program.js:1:52004)",
-        "KernelHost.processRequest (C:\\Users\\OMKARM~1\\AppData\\Local\\Temp\\tmpyrpzwcv0\\lib\\program.js:1:212822)"
+        "Kernel._Kernel_create (C:\\Users\\OMKARM~1\\AppData\\Local\\Temp\\tmpvtqh50wf\\lib\\program.js:1:61273)",
+        "Kernel.create (C:\\Users\\OMKARM~1\\AppData\\Local\\Temp\\tmpvtqh50wf\\lib\\program.js:1:52004)",
+        "KernelHost.processRequest (C:\\Users\\OMKARM~1\\AppData\\Local\\Temp\\tmpvtqh50wf\\lib\\program.js:1:212822)"
       ]
     }
   ],
@@ -35,11 +35,11 @@
     {
       "type": "aws:cdk:creationStack",
       "data": [
-        "Kernel._Kernel_create (C:\\Users\\OMKARM~1\\AppData\\Local\\Temp\\tmpyrpzwcv0\\lib\\program.js:1:61273)",
-        "Kernel.create (C:\\Users\\OMKARM~1\\AppData\\Local\\Temp\\tmpyrpzwcv0\\lib\\program.js:1:52004)",
-        "KernelHost.processRequest (C:\\Users\\OMKARM~1\\AppData\\Local\\Temp\\tmpyrpzwcv0\\lib\\program.js:1:212822)",
-        "KernelHost.run (C:\\Users\\OMKARM~1\\AppData\\Local\\Temp\\tmpyrpzwcv0\\lib\\program.js:1:211877)",
-        "Immediate._onImmediate (C:\\Users\\OMKARM~1\\AppData\\Local\\Temp\\tmpyrpzwcv0\\lib\\program.js:1:211921)",
+        "Kernel._Kernel_create (C:\\Users\\OMKARM~1\\AppData\\Local\\Temp\\tmpvtqh50wf\\lib\\program.js:1:61273)",
+        "Kernel.create (C:\\Users\\OMKARM~1\\AppData\\Local\\Temp\\tmpvtqh50wf\\lib\\program.js:1:52004)",
+        "KernelHost.processRequest (C:\\Users\\OMKARM~1\\AppData\\Local\\Temp\\tmpvtqh50wf\\lib\\program.js:1:212822)",
+        "KernelHost.run (C:\\Users\\OMKARM~1\\AppData\\Local\\Temp\\tmpvtqh50wf\\lib\\program.js:1:211877)",
+        "Immediate._onImmediate (C:\\Users\\OMKARM~1\\AppData\\Local\\Temp\\tmpvtqh50wf\\lib\\program.js:1:211921)",
         "...node internals..."
       ]
     }
@@ -52,11 +52,11 @@
     {
       "type": "aws:cdk:creationStack",
       "data": [
-        "Kernel._Kernel_create (C:\\Users\\OMKARM~1\\AppData\\Local\\Temp\\tmpyrpzwcv0\\lib\\program.js:1:61273)",
-        "Kernel.create (C:\\Users\\OMKARM~1\\AppData\\Local\\Temp\\tmpyrpzwcv0\\lib\\program.js:1:52004)",
-        "KernelHost.processRequest (C:\\Users\\OMKARM~1\\AppData\\Local\\Temp\\tmpyrpzwcv0\\lib\\program.js:1:212822)",
-        "KernelHost.run (C:\\Users\\OMKARM~1\\AppData\\Local\\Temp\\tmpyrpzwcv0\\lib\\program.js:1:211877)",
-        "Immediate._onImmediate (C:\\Users\\OMKARM~1\\AppData\\Local\\Temp\\tmpyrpzwcv0\\lib\\program.js:1:211921)",
+        "Kernel._Kernel_create (C:\\Users\\OMKARM~1\\AppData\\Local\\Temp\\tmpvtqh50wf\\lib\\program.js:1:61273)",
+        "Kernel.create (C:\\Users\\OMKARM~1\\AppData\\Local\\Temp\\tmpvtqh50wf\\lib\\program.js:1:52004)",
+        "KernelHost.processRequest (C:\\Users\\OMKARM~1\\AppData\\Local\\Temp\\tmpvtqh50wf\\lib\\program.js:1:212822)",
+        "KernelHost.run (C:\\Users\\OMKARM~1\\AppData\\Local\\Temp\\tmpvtqh50wf\\lib\\program.js:1:211877)",
+        "Immediate._onImmediate (C:\\Users\\OMKARM~1\\AppData\\Local\\Temp\\tmpvtqh50wf\\lib\\program.js:1:211921)",
         "...node internals..."
       ]
     }
@@ -69,11 +69,11 @@
     {
       "type": "aws:cdk:creationStack",
       "data": [
-        "Kernel._Kernel_create (C:\\Users\\OMKARM~1\\AppData\\Local\\Temp\\tmpyrpzwcv0\\lib\\program.js:1:61273)",
-        "Kernel.create (C:\\Users\\OMKARM~1\\AppData\\Local\\Temp\\tmpyrpzwcv0\\lib\\program.js:1:52004)",
-        "KernelHost.processRequest (C:\\Users\\OMKARM~1\\AppData\\Local\\Temp\\tmpyrpzwcv0\\lib\\program.js:1:212822)",
-        "KernelHost.run (C:\\Users\\OMKARM~1\\AppData\\Local\\Temp\\tmpyrpzwcv0\\lib\\program.js:1:211877)",
-        "Immediate._onImmediate (C:\\Users\\OMKARM~1\\AppData\\Local\\Temp\\tmpyrpzwcv0\\lib\\program.js:1:211921)",
+        "Kernel._Kernel_create (C:\\Users\\OMKARM~1\\AppData\\Local\\Temp\\tmpvtqh50wf\\lib\\program.js:1:61273)",
+        "Kernel.create (C:\\Users\\OMKARM~1\\AppData\\Local\\Temp\\tmpvtqh50wf\\lib\\program.js:1:52004)",
+        "KernelHost.processRequest (C:\\Users\\OMKARM~1\\AppData\\Local\\Temp\\tmpvtqh50wf\\lib\\program.js:1:212822)",
+        "KernelHost.run (C:\\Users\\OMKARM~1\\AppData\\Local\\Temp\\tmpvtqh50wf\\lib\\program.js:1:211877)",
+        "Immediate._onImmediate (C:\\Users\\OMKARM~1\\AppData\\Local\\Temp\\tmpvtqh50wf\\lib\\program.js:1:211921)",
         "...node internals..."
       ]
     }
@@ -87,7 +87,7 @@
       "type": "aws:cdk:creationStack",
       "data": [
         "...App.synth in aws-cdk-lib...",
-        "C:\\Users\\OMKARM~1\\AppData\\Local\\Temp\\tmpyrpzwcv0\\lib\\program.js:1:543 (C:\\Users\\OMKARM~1\\AppData\\Local\\Temp\\tmpyrpzwcv0\\lib\\program.js:1:5434)"
+        "C:\\Users\\OMKARM~1\\AppData\\Local\\Temp\\tmpvtqh50wf\\lib\\program.js:1:543 (C:\\Users\\OMKARM~1\\AppData\\Local\\Temp\\tmpvtqh50wf\\lib\\program.js:1:5434)"
       ]
     }
   ],
@@ -100,7 +100,7 @@
       "type": "aws:cdk:creationStack",
       "data": [
         "...App.synth in aws-cdk-lib...",
-        "C:\\Users\\OMKARM~1\\AppData\\Local\\Temp\\tmpyrpzwcv0\\lib\\program.js:1:543 (C:\\Users\\OMKARM~1\\AppData\\Local\\Temp\\tmpyrpzwcv0\\lib\\program.js:1:5434)"
+        "C:\\Users\\OMKARM~1\\AppData\\Local\\Temp\\tmpvtqh50wf\\lib\\program.js:1:543 (C:\\Users\\OMKARM~1\\AppData\\Local\\Temp\\tmpvtqh50wf\\lib\\program.js:1:5434)"
       ]
     }
   ],
@@ -113,11 +113,11 @@
       "type": "aws:cdk:creationStack",
       "data": [
         "...new Vpc2 in aws-cdk-lib...",
-        "Kernel._Kernel_create (C:\\Users\\OMKARM~1\\AppData\\Local\\Temp\\tmpyrpzwcv0\\lib\\program.js:1:61273)",
-        "Kernel.create (C:\\Users\\OMKARM~1\\AppData\\Local\\Temp\\tmpyrpzwcv0\\lib\\program.js:1:52004)",
-        "KernelHost.processRequest (C:\\Users\\OMKARM~1\\AppData\\Local\\Temp\\tmpyrpzwcv0\\lib\\program.js:1:212822)",
-        "KernelHost.run (C:\\Users\\OMKARM~1\\AppData\\Local\\Temp\\tmpyrpzwcv0\\lib\\program.js:1:211877)",
-        "Immediate._onImmediate (C:\\Users\\OMKARM~1\\AppData\\Local\\Temp\\tmpyrpzwcv0\\lib\\program.js:1:211921)",
+        "Kernel._Kernel_create (C:\\Users\\OMKARM~1\\AppData\\Local\\Temp\\tmpvtqh50wf\\lib\\program.js:1:61273)",
+        "Kernel.create (C:\\Users\\OMKARM~1\\AppData\\Local\\Temp\\tmpvtqh50wf\\lib\\program.js:1:52004)",
+        "KernelHost.processRequest (C:\\Users\\OMKARM~1\\AppData\\Local\\Temp\\tmpvtqh50wf\\lib\\program.js:1:212822)",
+        "KernelHost.run (C:\\Users\\OMKARM~1\\AppData\\Local\\Temp\\tmpvtqh50wf\\lib\\program.js:1:211877)",
+        "Immediate._onImmediate (C:\\Users\\OMKARM~1\\AppData\\Local\\Temp\\tmpvtqh50wf\\lib\\program.js:1:211921)",
         "...node internals..."
       ]
     }
@@ -131,11 +131,11 @@
       "type": "aws:cdk:creationStack",
       "data": [
         "...new Vpc2 in aws-cdk-lib...",
-        "Kernel._Kernel_create (C:\\Users\\OMKARM~1\\AppData\\Local\\Temp\\tmpyrpzwcv0\\lib\\program.js:1:61273)",
-        "Kernel.create (C:\\Users\\OMKARM~1\\AppData\\Local\\Temp\\tmpyrpzwcv0\\lib\\program.js:1:52004)",
-        "KernelHost.processRequest (C:\\Users\\OMKARM~1\\AppData\\Local\\Temp\\tmpyrpzwcv0\\lib\\program.js:1:212822)",
-        "KernelHost.run (C:\\Users\\OMKARM~1\\AppData\\Local\\Temp\\tmpyrpzwcv0\\lib\\program.js:1:211877)",
-        "Immediate._onImmediate (C:\\Users\\OMKARM~1\\AppData\\Local\\Temp\\tmpyrpzwcv0\\lib\\program.js:1:211921)",
+        "Kernel._Kernel_create (C:\\Users\\OMKARM~1\\AppData\\Local\\Temp\\tmpvtqh50wf\\lib\\program.js:1:61273)",
+        "Kernel.create (C:\\Users\\OMKARM~1\\AppData\\Local\\Temp\\tmpvtqh50wf\\lib\\program.js:1:52004)",
+        "KernelHost.processRequest (C:\\Users\\OMKARM~1\\AppData\\Local\\Temp\\tmpvtqh50wf\\lib\\program.js:1:212822)",
+        "KernelHost.run (C:\\Users\\OMKARM~1\\AppData\\Local\\Temp\\tmpvtqh50wf\\lib\\program.js:1:211877)",
+        "Immediate._onImmediate (C:\\Users\\OMKARM~1\\AppData\\Local\\Temp\\tmpvtqh50wf\\lib\\program.js:1:211921)",
         "...node internals..."
       ]
     }
@@ -149,11 +149,11 @@
       "type": "aws:cdk:creationStack",
       "data": [
         "...new Vpc2 in aws-cdk-lib...",
-        "Kernel._Kernel_create (C:\\Users\\OMKARM~1\\AppData\\Local\\Temp\\tmpyrpzwcv0\\lib\\program.js:1:61273)",
-        "Kernel.create (C:\\Users\\OMKARM~1\\AppData\\Local\\Temp\\tmpyrpzwcv0\\lib\\program.js:1:52004)",
-        "KernelHost.processRequest (C:\\Users\\OMKARM~1\\AppData\\Local\\Temp\\tmpyrpzwcv0\\lib\\program.js:1:212822)",
-        "KernelHost.run (C:\\Users\\OMKARM~1\\AppData\\Local\\Temp\\tmpyrpzwcv0\\lib\\program.js:1:211877)",
-        "Immediate._onImmediate (C:\\Users\\OMKARM~1\\AppData\\Local\\Temp\\tmpyrpzwcv0\\lib\\program.js:1:211921)",
+        "Kernel._Kernel_create (C:\\Users\\OMKARM~1\\AppData\\Local\\Temp\\tmpvtqh50wf\\lib\\program.js:1:61273)",
+        "Kernel.create (C:\\Users\\OMKARM~1\\AppData\\Local\\Temp\\tmpvtqh50wf\\lib\\program.js:1:52004)",
+        "KernelHost.processRequest (C:\\Users\\OMKARM~1\\AppData\\Local\\Temp\\tmpvtqh50wf\\lib\\program.js:1:212822)",
+        "KernelHost.run (C:\\Users\\OMKARM~1\\AppData\\Local\\Temp\\tmpvtqh50wf\\lib\\program.js:1:211877)",
+        "Immediate._onImmediate (C:\\Users\\OMKARM~1\\AppData\\Local\\Temp\\tmpvtqh50wf\\lib\\program.js:1:211921)",
         "...node internals..."
       ]
     }
@@ -167,11 +167,11 @@
       "type": "aws:cdk:creationStack",
       "data": [
         "...new SecurityGroup2 in aws-cdk-lib...",
-        "Kernel._Kernel_create (C:\\Users\\OMKARM~1\\AppData\\Local\\Temp\\tmpyrpzwcv0\\lib\\program.js:1:61273)",
-        "Kernel.create (C:\\Users\\OMKARM~1\\AppData\\Local\\Temp\\tmpyrpzwcv0\\lib\\program.js:1:52004)",
-        "KernelHost.processRequest (C:\\Users\\OMKARM~1\\AppData\\Local\\Temp\\tmpyrpzwcv0\\lib\\program.js:1:212822)",
-        "KernelHost.run (C:\\Users\\OMKARM~1\\AppData\\Local\\Temp\\tmpyrpzwcv0\\lib\\program.js:1:211877)",
-        "Immediate._onImmediate (C:\\Users\\OMKARM~1\\AppData\\Local\\Temp\\tmpyrpzwcv0\\lib\\program.js:1:211921)",
+        "Kernel._Kernel_create (C:\\Users\\OMKARM~1\\AppData\\Local\\Temp\\tmpvtqh50wf\\lib\\program.js:1:61273)",
+        "Kernel.create (C:\\Users\\OMKARM~1\\AppData\\Local\\Temp\\tmpvtqh50wf\\lib\\program.js:1:52004)",
+        "KernelHost.processRequest (C:\\Users\\OMKARM~1\\AppData\\Local\\Temp\\tmpvtqh50wf\\lib\\program.js:1:212822)",
+        "KernelHost.run (C:\\Users\\OMKARM~1\\AppData\\Local\\Temp\\tmpvtqh50wf\\lib\\program.js:1:211877)",
+        "Immediate._onImmediate (C:\\Users\\OMKARM~1\\AppData\\Local\\Temp\\tmpvtqh50wf\\lib\\program.js:1:211921)",
         "...node internals..."
       ]
     }
@@ -185,12 +185,12 @@
       "type": "aws:cdk:creationStack",
       "data": [
         "...WrappedClass.<anonymous> in aws-cdk-lib...",
-        "C:\\Users\\OMKARM~1\\AppData\\Local\\Temp\\tmpyrpzwcv0\\lib\\program.js:1:543 (C:\\Users\\OMKARM~1\\AppData\\Local\\Temp\\tmpyrpzwcv0\\lib\\program.js:1:5434)",
-        "Kernel._Kernel_ensureSync (C:\\Users\\OMKARM~1\\AppData\\Local\\Temp\\tmpyrpzwcv0\\lib\\program.js:1:69889)",
-        "Kernel.invoke (C:\\Users\\OMKARM~1\\AppData\\Local\\Temp\\tmpyrpzwcv0\\lib\\program.js:1:54294)",
-        "KernelHost.processRequest (C:\\Users\\OMKARM~1\\AppData\\Local\\Temp\\tmpyrpzwcv0\\lib\\program.js:1:212822)",
-        "KernelHost.run (C:\\Users\\OMKARM~1\\AppData\\Local\\Temp\\tmpyrpzwcv0\\lib\\program.js:1:211877)",
-        "Immediate._onImmediate (C:\\Users\\OMKARM~1\\AppData\\Local\\Temp\\tmpyrpzwcv0\\lib\\program.js:1:211921)",
+        "C:\\Users\\OMKARM~1\\AppData\\Local\\Temp\\tmpvtqh50wf\\lib\\program.js:1:543 (C:\\Users\\OMKARM~1\\AppData\\Local\\Temp\\tmpvtqh50wf\\lib\\program.js:1:5434)",
+        "Kernel._Kernel_ensureSync (C:\\Users\\OMKARM~1\\AppData\\Local\\Temp\\tmpvtqh50wf\\lib\\program.js:1:69889)",
+        "Kernel.invoke (C:\\Users\\OMKARM~1\\AppData\\Local\\Temp\\tmpvtqh50wf\\lib\\program.js:1:54294)",
+        "KernelHost.processRequest (C:\\Users\\OMKARM~1\\AppData\\Local\\Temp\\tmpvtqh50wf\\lib\\program.js:1:212822)",
+        "KernelHost.run (C:\\Users\\OMKARM~1\\AppData\\Local\\Temp\\tmpvtqh50wf\\lib\\program.js:1:211877)",
+        "Immediate._onImmediate (C:\\Users\\OMKARM~1\\AppData\\Local\\Temp\\tmpvtqh50wf\\lib\\program.js:1:211921)",
         "...node internals..."
       ]
     }
@@ -204,12 +204,12 @@
       "type": "aws:cdk:creationStack",
       "data": [
         "...WrappedClass.<anonymous> in aws-cdk-lib...",
-        "C:\\Users\\OMKARM~1\\AppData\\Local\\Temp\\tmpyrpzwcv0\\lib\\program.js:1:543 (C:\\Users\\OMKARM~1\\AppData\\Local\\Temp\\tmpyrpzwcv0\\lib\\program.js:1:5434)",
-        "Kernel._Kernel_ensureSync (C:\\Users\\OMKARM~1\\AppData\\Local\\Temp\\tmpyrpzwcv0\\lib\\program.js:1:69889)",
-        "Kernel.invoke (C:\\Users\\OMKARM~1\\AppData\\Local\\Temp\\tmpyrpzwcv0\\lib\\program.js:1:54294)",
-        "KernelHost.processRequest (C:\\Users\\OMKARM~1\\AppData\\Local\\Temp\\tmpyrpzwcv0\\lib\\program.js:1:212822)",
-        "KernelHost.run (C:\\Users\\OMKARM~1\\AppData\\Local\\Temp\\tmpyrpzwcv0\\lib\\program.js:1:211877)",
-        "Immediate._onImmediate (C:\\Users\\OMKARM~1\\AppData\\Local\\Temp\\tmpyrpzwcv0\\lib\\program.js:1:211921)",
+        "C:\\Users\\OMKARM~1\\AppData\\Local\\Temp\\tmpvtqh50wf\\lib\\program.js:1:543 (C:\\Users\\OMKARM~1\\AppData\\Local\\Temp\\tmpvtqh50wf\\lib\\program.js:1:5434)",
+        "Kernel._Kernel_ensureSync (C:\\Users\\OMKARM~1\\AppData\\Local\\Temp\\tmpvtqh50wf\\lib\\program.js:1:69889)",
+        "Kernel.invoke (C:\\Users\\OMKARM~1\\AppData\\Local\\Temp\\tmpvtqh50wf\\lib\\program.js:1:54294)",
+        "KernelHost.processRequest (C:\\Users\\OMKARM~1\\AppData\\Local\\Temp\\tmpvtqh50wf\\lib\\program.js:1:212822)",
+        "KernelHost.run (C:\\Users\\OMKARM~1\\AppData\\Local\\Temp\\tmpvtqh50wf\\lib\\program.js:1:211877)",
+        "Immediate._onImmediate (C:\\Users\\OMKARM~1\\AppData\\Local\\Temp\\tmpvtqh50wf\\lib\\program.js:1:211921)",
         "...node internals..."
       ]
     }
@@ -223,11 +223,11 @@
       "type": "aws:cdk:creationStack",
       "data": [
         "...new Secret2 in aws-cdk-lib...",
-        "Kernel._Kernel_create (C:\\Users\\OMKARM~1\\AppData\\Local\\Temp\\tmpyrpzwcv0\\lib\\program.js:1:61273)",
-        "Kernel.create (C:\\Users\\OMKARM~1\\AppData\\Local\\Temp\\tmpyrpzwcv0\\lib\\program.js:1:52004)",
-        "KernelHost.processRequest (C:\\Users\\OMKARM~1\\AppData\\Local\\Temp\\tmpyrpzwcv0\\lib\\program.js:1:212822)",
-        "KernelHost.run (C:\\Users\\OMKARM~1\\AppData\\Local\\Temp\\tmpyrpzwcv0\\lib\\program.js:1:211877)",
-        "Immediate._onImmediate (C:\\Users\\OMKARM~1\\AppData\\Local\\Temp\\tmpyrpzwcv0\\lib\\program.js:1:211921)",
+        "Kernel._Kernel_create (C:\\Users\\OMKARM~1\\AppData\\Local\\Temp\\tmpvtqh50wf\\lib\\program.js:1:61273)",
+        "Kernel.create (C:\\Users\\OMKARM~1\\AppData\\Local\\Temp\\tmpvtqh50wf\\lib\\program.js:1:52004)",
+        "KernelHost.processRequest (C:\\Users\\OMKARM~1\\AppData\\Local\\Temp\\tmpvtqh50wf\\lib\\program.js:1:212822)",
+        "KernelHost.run (C:\\Users\\OMKARM~1\\AppData\\Local\\Temp\\tmpvtqh50wf\\lib\\program.js:1:211877)",
+        "Immediate._onImmediate (C:\\Users\\OMKARM~1\\AppData\\Local\\Temp\\tmpvtqh50wf\\lib\\program.js:1:211921)",
         "...node internals..."
       ]
     }
@@ -241,11 +241,11 @@
       "type": "aws:cdk:creationStack",
       "data": [
         "...new Role2 in aws-cdk-lib...",
-        "Kernel._Kernel_create (C:\\Users\\OMKARM~1\\AppData\\Local\\Temp\\tmpyrpzwcv0\\lib\\program.js:1:61273)",
-        "Kernel.create (C:\\Users\\OMKARM~1\\AppData\\Local\\Temp\\tmpyrpzwcv0\\lib\\program.js:1:52004)",
-        "KernelHost.processRequest (C:\\Users\\OMKARM~1\\AppData\\Local\\Temp\\tmpyrpzwcv0\\lib\\program.js:1:212822)",
-        "KernelHost.run (C:\\Users\\OMKARM~1\\AppData\\Local\\Temp\\tmpyrpzwcv0\\lib\\program.js:1:211877)",
-        "Immediate._onImmediate (C:\\Users\\OMKARM~1\\AppData\\Local\\Temp\\tmpyrpzwcv0\\lib\\program.js:1:211921)",
+        "Kernel._Kernel_create (C:\\Users\\OMKARM~1\\AppData\\Local\\Temp\\tmpvtqh50wf\\lib\\program.js:1:61273)",
+        "Kernel.create (C:\\Users\\OMKARM~1\\AppData\\Local\\Temp\\tmpvtqh50wf\\lib\\program.js:1:52004)",
+        "KernelHost.processRequest (C:\\Users\\OMKARM~1\\AppData\\Local\\Temp\\tmpvtqh50wf\\lib\\program.js:1:212822)",
+        "KernelHost.run (C:\\Users\\OMKARM~1\\AppData\\Local\\Temp\\tmpvtqh50wf\\lib\\program.js:1:211877)",
+        "Immediate._onImmediate (C:\\Users\\OMKARM~1\\AppData\\Local\\Temp\\tmpvtqh50wf\\lib\\program.js:1:211921)",
         "...node internals..."
       ]
     }
@@ -259,11 +259,11 @@
       "type": "aws:cdk:creationStack",
       "data": [
         "...new Instance2 in aws-cdk-lib...",
-        "Kernel._Kernel_create (C:\\Users\\OMKARM~1\\AppData\\Local\\Temp\\tmpyrpzwcv0\\lib\\program.js:1:61273)",
-        "Kernel.create (C:\\Users\\OMKARM~1\\AppData\\Local\\Temp\\tmpyrpzwcv0\\lib\\program.js:1:52004)",
-        "KernelHost.processRequest (C:\\Users\\OMKARM~1\\AppData\\Local\\Temp\\tmpyrpzwcv0\\lib\\program.js:1:212822)",
-        "KernelHost.run (C:\\Users\\OMKARM~1\\AppData\\Local\\Temp\\tmpyrpzwcv0\\lib\\program.js:1:211877)",
-        "Immediate._onImmediate (C:\\Users\\OMKARM~1\\AppData\\Local\\Temp\\tmpyrpzwcv0\\lib\\program.js:1:211921)",
+        "Kernel._Kernel_create (C:\\Users\\OMKARM~1\\AppData\\Local\\Temp\\tmpvtqh50wf\\lib\\program.js:1:61273)",
+        "Kernel.create (C:\\Users\\OMKARM~1\\AppData\\Local\\Temp\\tmpvtqh50wf\\lib\\program.js:1:52004)",
+        "KernelHost.processRequest (C:\\Users\\OMKARM~1\\AppData\\Local\\Temp\\tmpvtqh50wf\\lib\\program.js:1:212822)",
+        "KernelHost.run (C:\\Users\\OMKARM~1\\AppData\\Local\\Temp\\tmpvtqh50wf\\lib\\program.js:1:211877)",
+        "Immediate._onImmediate (C:\\Users\\OMKARM~1\\AppData\\Local\\Temp\\tmpvtqh50wf\\lib\\program.js:1:211921)",
         "...node internals..."
       ]
     }
@@ -277,11 +277,11 @@
       "type": "aws:cdk:creationStack",
       "data": [
         "...new Instance2 in aws-cdk-lib...",
-        "Kernel._Kernel_create (C:\\Users\\OMKARM~1\\AppData\\Local\\Temp\\tmpyrpzwcv0\\lib\\program.js:1:61273)",
-        "Kernel.create (C:\\Users\\OMKARM~1\\AppData\\Local\\Temp\\tmpyrpzwcv0\\lib\\program.js:1:52004)",
-        "KernelHost.processRequest (C:\\Users\\OMKARM~1\\AppData\\Local\\Temp\\tmpyrpzwcv0\\lib\\program.js:1:212822)",
-        "KernelHost.run (C:\\Users\\OMKARM~1\\AppData\\Local\\Temp\\tmpyrpzwcv0\\lib\\program.js:1:211877)",
-        "Immediate._onImmediate (C:\\Users\\OMKARM~1\\AppData\\Local\\Temp\\tmpyrpzwcv0\\lib\\program.js:1:211921)",
+        "Kernel._Kernel_create (C:\\Users\\OMKARM~1\\AppData\\Local\\Temp\\tmpvtqh50wf\\lib\\program.js:1:61273)",
+        "Kernel.create (C:\\Users\\OMKARM~1\\AppData\\Local\\Temp\\tmpvtqh50wf\\lib\\program.js:1:52004)",
+        "KernelHost.processRequest (C:\\Users\\OMKARM~1\\AppData\\Local\\Temp\\tmpvtqh50wf\\lib\\program.js:1:212822)",
+        "KernelHost.run (C:\\Users\\OMKARM~1\\AppData\\Local\\Temp\\tmpvtqh50wf\\lib\\program.js:1:211877)",
+        "Immediate._onImmediate (C:\\Users\\OMKARM~1\\AppData\\Local\\Temp\\tmpvtqh50wf\\lib\\program.js:1:211921)",
         "...node internals..."
       ]
     }
@@ -295,11 +295,11 @@
       "type": "aws:cdk:creationStack",
       "data": [
         "...new Instance2 in aws-cdk-lib...",
-        "Kernel._Kernel_create (C:\\Users\\OMKARM~1\\AppData\\Local\\Temp\\tmpyrpzwcv0\\lib\\program.js:1:61273)",
-        "Kernel.create (C:\\Users\\OMKARM~1\\AppData\\Local\\Temp\\tmpyrpzwcv0\\lib\\program.js:1:52004)",
-        "KernelHost.processRequest (C:\\Users\\OMKARM~1\\AppData\\Local\\Temp\\tmpyrpzwcv0\\lib\\program.js:1:212822)",
-        "KernelHost.run (C:\\Users\\OMKARM~1\\AppData\\Local\\Temp\\tmpyrpzwcv0\\lib\\program.js:1:211877)",
-        "Immediate._onImmediate (C:\\Users\\OMKARM~1\\AppData\\Local\\Temp\\tmpyrpzwcv0\\lib\\program.js:1:211921)",
+        "Kernel._Kernel_create (C:\\Users\\OMKARM~1\\AppData\\Local\\Temp\\tmpvtqh50wf\\lib\\program.js:1:61273)",
+        "Kernel.create (C:\\Users\\OMKARM~1\\AppData\\Local\\Temp\\tmpvtqh50wf\\lib\\program.js:1:52004)",
+        "KernelHost.processRequest (C:\\Users\\OMKARM~1\\AppData\\Local\\Temp\\tmpvtqh50wf\\lib\\program.js:1:212822)",
+        "KernelHost.run (C:\\Users\\OMKARM~1\\AppData\\Local\\Temp\\tmpvtqh50wf\\lib\\program.js:1:211877)",
+        "Immediate._onImmediate (C:\\Users\\OMKARM~1\\AppData\\Local\\Temp\\tmpvtqh50wf\\lib\\program.js:1:211921)",
         "...node internals..."
       ]
     }
@@ -313,11 +313,11 @@
       "type": "aws:cdk:creationStack",
       "data": [
         "...new Instance2 in aws-cdk-lib...",
-        "Kernel._Kernel_create (C:\\Users\\OMKARM~1\\AppData\\Local\\Temp\\tmpyrpzwcv0\\lib\\program.js:1:61273)",
-        "Kernel.create (C:\\Users\\OMKARM~1\\AppData\\Local\\Temp\\tmpyrpzwcv0\\lib\\program.js:1:52004)",
-        "KernelHost.processRequest (C:\\Users\\OMKARM~1\\AppData\\Local\\Temp\\tmpyrpzwcv0\\lib\\program.js:1:212822)",
-        "KernelHost.run (C:\\Users\\OMKARM~1\\AppData\\Local\\Temp\\tmpyrpzwcv0\\lib\\program.js:1:211877)",
-        "Immediate._onImmediate (C:\\Users\\OMKARM~1\\AppData\\Local\\Temp\\tmpyrpzwcv0\\lib\\program.js:1:211921)",
+        "Kernel._Kernel_create (C:\\Users\\OMKARM~1\\AppData\\Local\\Temp\\tmpvtqh50wf\\lib\\program.js:1:61273)",
+        "Kernel.create (C:\\Users\\OMKARM~1\\AppData\\Local\\Temp\\tmpvtqh50wf\\lib\\program.js:1:52004)",
+        "KernelHost.processRequest (C:\\Users\\OMKARM~1\\AppData\\Local\\Temp\\tmpvtqh50wf\\lib\\program.js:1:212822)",
+        "KernelHost.run (C:\\Users\\OMKARM~1\\AppData\\Local\\Temp\\tmpvtqh50wf\\lib\\program.js:1:211877)",
+        "Immediate._onImmediate (C:\\Users\\OMKARM~1\\AppData\\Local\\Temp\\tmpvtqh50wf\\lib\\program.js:1:211921)",
         "...node internals..."
       ]
     }
@@ -331,11 +331,11 @@
       "type": "aws:cdk:creationStack",
       "data": [
         "...new Instance2 in aws-cdk-lib...",
-        "Kernel._Kernel_create (C:\\Users\\OMKARM~1\\AppData\\Local\\Temp\\tmpyrpzwcv0\\lib\\program.js:1:61273)",
-        "Kernel.create (C:\\Users\\OMKARM~1\\AppData\\Local\\Temp\\tmpyrpzwcv0\\lib\\program.js:1:52004)",
-        "KernelHost.processRequest (C:\\Users\\OMKARM~1\\AppData\\Local\\Temp\\tmpyrpzwcv0\\lib\\program.js:1:212822)",
-        "KernelHost.run (C:\\Users\\OMKARM~1\\AppData\\Local\\Temp\\tmpyrpzwcv0\\lib\\program.js:1:211877)",
-        "Immediate._onImmediate (C:\\Users\\OMKARM~1\\AppData\\Local\\Temp\\tmpyrpzwcv0\\lib\\program.js:1:211921)",
+        "Kernel._Kernel_create (C:\\Users\\OMKARM~1\\AppData\\Local\\Temp\\tmpvtqh50wf\\lib\\program.js:1:61273)",
+        "Kernel.create (C:\\Users\\OMKARM~1\\AppData\\Local\\Temp\\tmpvtqh50wf\\lib\\program.js:1:52004)",
+        "KernelHost.processRequest (C:\\Users\\OMKARM~1\\AppData\\Local\\Temp\\tmpvtqh50wf\\lib\\program.js:1:212822)",
+        "KernelHost.run (C:\\Users\\OMKARM~1\\AppData\\Local\\Temp\\tmpvtqh50wf\\lib\\program.js:1:211877)",
+        "Immediate._onImmediate (C:\\Users\\OMKARM~1\\AppData\\Local\\Temp\\tmpvtqh50wf\\lib\\program.js:1:211921)",
         "...node internals..."
       ]
     }
@@ -349,11 +349,11 @@
       "type": "aws:cdk:creationStack",
       "data": [
         "...new Instance2 in aws-cdk-lib...",
-        "Kernel._Kernel_create (C:\\Users\\OMKARM~1\\AppData\\Local\\Temp\\tmpyrpzwcv0\\lib\\program.js:1:61273)",
-        "Kernel.create (C:\\Users\\OMKARM~1\\AppData\\Local\\Temp\\tmpyrpzwcv0\\lib\\program.js:1:52004)",
-        "KernelHost.processRequest (C:\\Users\\OMKARM~1\\AppData\\Local\\Temp\\tmpyrpzwcv0\\lib\\program.js:1:212822)",
-        "KernelHost.run (C:\\Users\\OMKARM~1\\AppData\\Local\\Temp\\tmpyrpzwcv0\\lib\\program.js:1:211877)",
-        "Immediate._onImmediate (C:\\Users\\OMKARM~1\\AppData\\Local\\Temp\\tmpyrpzwcv0\\lib\\program.js:1:211921)",
+        "Kernel._Kernel_create (C:\\Users\\OMKARM~1\\AppData\\Local\\Temp\\tmpvtqh50wf\\lib\\program.js:1:61273)",
+        "Kernel.create (C:\\Users\\OMKARM~1\\AppData\\Local\\Temp\\tmpvtqh50wf\\lib\\program.js:1:52004)",
+        "KernelHost.processRequest (C:\\Users\\OMKARM~1\\AppData\\Local\\Temp\\tmpvtqh50wf\\lib\\program.js:1:212822)",
+        "KernelHost.run (C:\\Users\\OMKARM~1\\AppData\\Local\\Temp\\tmpvtqh50wf\\lib\\program.js:1:211877)",
+        "Immediate._onImmediate (C:\\Users\\OMKARM~1\\AppData\\Local\\Temp\\tmpvtqh50wf\\lib\\program.js:1:211921)",
         "...node internals..."
       ]
     }
@@ -367,9 +367,9 @@
       "type": "aws:cdk:creationStack",
       "data": [
         "...App.synth in aws-cdk-lib...",
-        "C:\\Users\\OMKARM~1\\AppData\\Local\\Temp\\tmpyrpzwcv0\\lib\\program.js:1:543 (C:\\Users\\OMKARM~1\\AppData\\Local\\Temp\\tmpyrpzwcv0\\lib\\program.js:1:5434)",
-        "Kernel._Kernel_ensureSync (C:\\Users\\OMKARM~1\\AppData\\Local\\Temp\\tmpyrpzwcv0\\lib\\program.js:1:69889)",
-        "Kernel.invoke (C:\\Users\\OMKARM~1\\AppData\\Local\\Temp\\tmpyrpzwcv0\\lib\\program.js:1:54294)"
+        "C:\\Users\\OMKARM~1\\AppData\\Local\\Temp\\tmpvtqh50wf\\lib\\program.js:1:543 (C:\\Users\\OMKARM~1\\AppData\\Local\\Temp\\tmpvtqh50wf\\lib\\program.js:1:5434)",
+        "Kernel._Kernel_ensureSync (C:\\Users\\OMKARM~1\\AppData\\Local\\Temp\\tmpvtqh50wf\\lib\\program.js:1:69889)",
+        "Kernel.invoke (C:\\Users\\OMKARM~1\\AppData\\Local\\Temp\\tmpvtqh50wf\\lib\\program.js:1:54294)"
       ]
     }
   ],
@@ -381,7 +381,7 @@
     {
       "type": "aws:cdk:creationStack",
       "data": [
-        "...C:\\Users\\OMKARM~1\\AppData\\Local\\Temp\\jsii-kernel-RsLWxf\\node_modules\\aws-cdk-lib\\aws-ec2\\lib\\vpc.js:1:257 in aws-cdk-lib...",
+        "...C:\\Users\\OMKARM~1\\AppData\\Local\\Temp\\jsii-kernel-xTDUje\\node_modules\\aws-cdk-lib\\aws-ec2\\lib\\vpc.js:1:257 in aws-cdk-lib...",
         "Array.forEach (:)",
         "...aws-cdk-lib..."
       ]
@@ -395,7 +395,7 @@
     {
       "type": "aws:cdk:creationStack",
       "data": [
-        "...C:\\Users\\OMKARM~1\\AppData\\Local\\Temp\\jsii-kernel-RsLWxf\\node_modules\\aws-cdk-lib\\aws-ec2\\lib\\vpc.js:1:257 in aws-cdk-lib...",
+        "...C:\\Users\\OMKARM~1\\AppData\\Local\\Temp\\jsii-kernel-xTDUje\\node_modules\\aws-cdk-lib\\aws-ec2\\lib\\vpc.js:1:257 in aws-cdk-lib...",
         "Array.forEach (:)",
         "...aws-cdk-lib..."
       ]
@@ -409,7 +409,7 @@
     {
       "type": "aws:cdk:creationStack",
       "data": [
-        "...C:\\Users\\OMKARM~1\\AppData\\Local\\Temp\\jsii-kernel-RsLWxf\\node_modules\\aws-cdk-lib\\aws-ec2\\lib\\vpc.js:1:257 in aws-cdk-lib...",
+        "...C:\\Users\\OMKARM~1\\AppData\\Local\\Temp\\jsii-kernel-xTDUje\\node_modules\\aws-cdk-lib\\aws-ec2\\lib\\vpc.js:1:257 in aws-cdk-lib...",
         "Array.forEach (:)",
         "...aws-cdk-lib..."
       ]
@@ -423,13 +423,13 @@
     {
       "type": "aws:cdk:creationStack",
       "data": [
-        "...C:\\Users\\OMKARM~1\\AppData\\Local\\Temp\\jsii-kernel-RsLWxf\\node_modules\\aws-cdk-lib\\aws-ec2\\lib\\vpc.js:1:197 in aws-cdk-lib...",
+        "...C:\\Users\\OMKARM~1\\AppData\\Local\\Temp\\jsii-kernel-xTDUje\\node_modules\\aws-cdk-lib\\aws-ec2\\lib\\vpc.js:1:197 in aws-cdk-lib...",
         "Array.forEach (:)",
         "...new Vpc2 in aws-cdk-lib...",
-        "Kernel._Kernel_create (C:\\Users\\OMKARM~1\\AppData\\Local\\Temp\\tmpyrpzwcv0\\lib\\program.js:1:61273)",
-        "Kernel.create (C:\\Users\\OMKARM~1\\AppData\\Local\\Temp\\tmpyrpzwcv0\\lib\\program.js:1:52004)",
-        "KernelHost.processRequest (C:\\Users\\OMKARM~1\\AppData\\Local\\Temp\\tmpyrpzwcv0\\lib\\program.js:1:212822)",
-        "KernelHost.run (C:\\Users\\OMKARM~1\\AppData\\Local\\Temp\\tmpyrpzwcv0\\lib\\program.js:1:211877)"
+        "Kernel._Kernel_create (C:\\Users\\OMKARM~1\\AppData\\Local\\Temp\\tmpvtqh50wf\\lib\\program.js:1:61273)",
+        "Kernel.create (C:\\Users\\OMKARM~1\\AppData\\Local\\Temp\\tmpvtqh50wf\\lib\\program.js:1:52004)",
+        "KernelHost.processRequest (C:\\Users\\OMKARM~1\\AppData\\Local\\Temp\\tmpvtqh50wf\\lib\\program.js:1:212822)",
+        "KernelHost.run (C:\\Users\\OMKARM~1\\AppData\\Local\\Temp\\tmpvtqh50wf\\lib\\program.js:1:211877)"
       ]
     }
   ],
@@ -442,10 +442,10 @@
       "type": "aws:cdk:creationStack",
       "data": [
         "...new Vpc2 in aws-cdk-lib...",
-        "Kernel._Kernel_create (C:\\Users\\OMKARM~1\\AppData\\Local\\Temp\\tmpyrpzwcv0\\lib\\program.js:1:61273)",
-        "Kernel.create (C:\\Users\\OMKARM~1\\AppData\\Local\\Temp\\tmpyrpzwcv0\\lib\\program.js:1:52004)",
-        "KernelHost.processRequest (C:\\Users\\OMKARM~1\\AppData\\Local\\Temp\\tmpyrpzwcv0\\lib\\program.js:1:212822)",
-        "KernelHost.run (C:\\Users\\OMKARM~1\\AppData\\Local\\Temp\\tmpyrpzwcv0\\lib\\program.js:1:211877)"
+        "Kernel._Kernel_create (C:\\Users\\OMKARM~1\\AppData\\Local\\Temp\\tmpvtqh50wf\\lib\\program.js:1:61273)",
+        "Kernel.create (C:\\Users\\OMKARM~1\\AppData\\Local\\Temp\\tmpvtqh50wf\\lib\\program.js:1:52004)",
+        "KernelHost.processRequest (C:\\Users\\OMKARM~1\\AppData\\Local\\Temp\\tmpvtqh50wf\\lib\\program.js:1:212822)",
+        "KernelHost.run (C:\\Users\\OMKARM~1\\AppData\\Local\\Temp\\tmpvtqh50wf\\lib\\program.js:1:211877)"
       ]
     }
   ],
@@ -458,10 +458,10 @@
       "type": "aws:cdk:creationStack",
       "data": [
         "...new Vpc2 in aws-cdk-lib...",
-        "Kernel._Kernel_create (C:\\Users\\OMKARM~1\\AppData\\Local\\Temp\\tmpyrpzwcv0\\lib\\program.js:1:61273)",
-        "Kernel.create (C:\\Users\\OMKARM~1\\AppData\\Local\\Temp\\tmpyrpzwcv0\\lib\\program.js:1:52004)",
-        "KernelHost.processRequest (C:\\Users\\OMKARM~1\\AppData\\Local\\Temp\\tmpyrpzwcv0\\lib\\program.js:1:212822)",
-        "KernelHost.run (C:\\Users\\OMKARM~1\\AppData\\Local\\Temp\\tmpyrpzwcv0\\lib\\program.js:1:211877)"
+        "Kernel._Kernel_create (C:\\Users\\OMKARM~1\\AppData\\Local\\Temp\\tmpvtqh50wf\\lib\\program.js:1:61273)",
+        "Kernel.create (C:\\Users\\OMKARM~1\\AppData\\Local\\Temp\\tmpvtqh50wf\\lib\\program.js:1:52004)",
+        "KernelHost.processRequest (C:\\Users\\OMKARM~1\\AppData\\Local\\Temp\\tmpvtqh50wf\\lib\\program.js:1:212822)",
+        "KernelHost.run (C:\\Users\\OMKARM~1\\AppData\\Local\\Temp\\tmpvtqh50wf\\lib\\program.js:1:211877)"
       ]
     }
   ],
@@ -473,7 +473,7 @@
     {
       "type": "aws:cdk:creationStack",
       "data": [
-        "...C:\\Users\\OMKARM~1\\AppData\\Local\\Temp\\jsii-kernel-RsLWxf\\node_modules\\aws-cdk-lib\\aws-ec2\\lib\\vpc.js:1:260 in aws-cdk-lib...",
+        "...C:\\Users\\OMKARM~1\\AppData\\Local\\Temp\\jsii-kernel-xTDUje\\node_modules\\aws-cdk-lib\\aws-ec2\\lib\\vpc.js:1:260 in aws-cdk-lib...",
         "Array.forEach (:)",
         "...aws-cdk-lib..."
       ]
@@ -487,7 +487,7 @@
     {
       "type": "aws:cdk:creationStack",
       "data": [
-        "...C:\\Users\\OMKARM~1\\AppData\\Local\\Temp\\jsii-kernel-RsLWxf\\node_modules\\aws-cdk-lib\\aws-ec2\\lib\\vpc.js:1:260 in aws-cdk-lib...",
+        "...C:\\Users\\OMKARM~1\\AppData\\Local\\Temp\\jsii-kernel-xTDUje\\node_modules\\aws-cdk-lib\\aws-ec2\\lib\\vpc.js:1:260 in aws-cdk-lib...",
         "Array.forEach (:)",
         "...aws-cdk-lib..."
       ]
@@ -501,7 +501,7 @@
     {
       "type": "aws:cdk:creationStack",
       "data": [
-        "...C:\\Users\\OMKARM~1\\AppData\\Local\\Temp\\jsii-kernel-RsLWxf\\node_modules\\aws-cdk-lib\\aws-ec2\\lib\\vpc.js:1:260 in aws-cdk-lib...",
+        "...C:\\Users\\OMKARM~1\\AppData\\Local\\Temp\\jsii-kernel-xTDUje\\node_modules\\aws-cdk-lib\\aws-ec2\\lib\\vpc.js:1:260 in aws-cdk-lib...",
         "Array.forEach (:)",
         "...aws-cdk-lib..."
       ]
@@ -516,9 +516,9 @@
       "type": "aws:cdk:creationStack",
       "data": [
         "...new Vpc2 in aws-cdk-lib...",
-        "Kernel._Kernel_create (C:\\Users\\OMKARM~1\\AppData\\Local\\Temp\\tmpyrpzwcv0\\lib\\program.js:1:61273)",
-        "Kernel.create (C:\\Users\\OMKARM~1\\AppData\\Local\\Temp\\tmpyrpzwcv0\\lib\\program.js:1:52004)",
-        "KernelHost.processRequest (C:\\Users\\OMKARM~1\\AppData\\Local\\Temp\\tmpyrpzwcv0\\lib\\program.js:1:212822)"
+        "Kernel._Kernel_create (C:\\Users\\OMKARM~1\\AppData\\Local\\Temp\\tmpvtqh50wf\\lib\\program.js:1:61273)",
+        "Kernel.create (C:\\Users\\OMKARM~1\\AppData\\Local\\Temp\\tmpvtqh50wf\\lib\\program.js:1:52004)",
+        "KernelHost.processRequest (C:\\Users\\OMKARM~1\\AppData\\Local\\Temp\\tmpvtqh50wf\\lib\\program.js:1:212822)"
       ]
     }
   ],
@@ -531,8 +531,8 @@
       "type": "aws:cdk:creationStack",
       "data": [
         "...WrappedClass.grantRead in aws-cdk-lib...",
-        "C:\\Users\\OMKARM~1\\AppData\\Local\\Temp\\tmpyrpzwcv0\\lib\\program.js:1:543 (C:\\Users\\OMKARM~1\\AppData\\Local\\Temp\\tmpyrpzwcv0\\lib\\program.js:1:5434)",
-        "Kernel._Kernel_ensureSync (C:\\Users\\OMKARM~1\\AppData\\Local\\Temp\\tmpyrpzwcv0\\lib\\program.js:1:69889)"
+        "C:\\Users\\OMKARM~1\\AppData\\Local\\Temp\\tmpvtqh50wf\\lib\\program.js:1:543 (C:\\Users\\OMKARM~1\\AppData\\Local\\Temp\\tmpvtqh50wf\\lib\\program.js:1:5434)",
+        "Kernel._Kernel_ensureSync (C:\\Users\\OMKARM~1\\AppData\\Local\\Temp\\tmpvtqh50wf\\lib\\program.js:1:69889)"
       ]
     }
   ]
