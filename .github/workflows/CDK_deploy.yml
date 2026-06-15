@@ -35,7 +35,13 @@ jobs:
       - name: Install Python Dependencies
         run:  |
           python -m pip install --upgrade pip
-          pip install -r requirements.txt
+          pip install -r requirements.txt      
+      
+      - name: Install Conftest
+        run:  |
+          wget https://github.com/open-policy-agent/conftest/releases/download/v0.68.2/conftest_0.68.2_Linux_x86_64.tar.gz
+          tar xzf conftest_0.68.2_Linux_x86_64.tar.gz
+          sudo mv conftest /usr/local/bin
       
       - name: Configure AWS Credentials
         uses: aws-actions/configure-aws-credentials@v4
@@ -49,7 +55,10 @@ jobs:
         run: aws sts get-caller-identity
       
       - name: CDK Synth
-        run: cdk synth
-      
+        run: cdk synth > template.yaml
+
+      - name: Run OPA Policy Checks
+        run: conftest test template.yaml --policy policy --all-namespaces
+        
       - name: CDK Deploy
         run: cdk deploy KafkaStack --require-approval never
