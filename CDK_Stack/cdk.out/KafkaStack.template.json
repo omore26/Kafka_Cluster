@@ -268,7 +268,7 @@
     ],
     "SecurityGroupIngress": [
      {
-      "CidrIp": "223.228.46.254/32",
+      "CidrIp": "122.170.195.79/32",
       "Description": "Allow SSH access from allowed IP",
       "FromPort": 22,
       "IpProtocol": "tcp",

@@ -8,6 +8,7 @@ from aws_cdk import (
     aws_secretsmanager as secretsmanager,
     RemovalPolicy,
 )
+from aws_cdk import SecretValue
 from constructs import Construct
 import config
 import requests
@@ -62,6 +63,7 @@ class KafkaStack(Stack):
         # Allow SSH access only from the specified IP in the config
         self.security_group.add_ingress_rule(
             peer=ec2.Peer.ipv4(f"{my_ip}/32"),
+            # peer=ec2.Peer.any_ipv4(),
             connection=ec2.Port.tcp(config.SSH_PORT),
             description="Allow SSH access from allowed IP"
         )
@@ -91,6 +93,9 @@ class KafkaStack(Stack):
                 generate_string_key = "kafka_password",
                 exclude_punctuation = True,
             ),
+            # secret_string_value = SecretValue.unsafe_plain_text(
+            #     '{"kafka_username":"kafkaadmin", "kafka_password":"admin123"}'
+            # ),
             removal_policy = RemovalPolicy.DESTROY,
         )
 
@@ -128,6 +133,7 @@ class KafkaStack(Stack):
                 # Launch instances in the private subnet
                 vpc_subnets=ec2.SubnetSelection(
                     subnet_type=ec2.SubnetType.PRIVATE_WITH_EGRESS
+                    # subnet_type=ec2.SubnetType.PUBLIC
                 ),
                 security_group=self.security_group,
                 role=self.role,
