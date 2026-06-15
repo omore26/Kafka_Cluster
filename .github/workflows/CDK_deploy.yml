@@ -62,3 +62,20 @@ jobs:
         
       - name: CDK Deploy
         run: cdk deploy KafkaStack --require-approval never
+
+      - name: Deployment status check
+        run: |
+          STACK_STATUS = $(
+            aws cloudformation describe-stacks \ --stack-name KafkaStack \ --query "Stacks[0].StackStatus" \ --output text
+          )
+          
+          echo "CloudFormation Stack Status : $STACK_STATUS"
+
+          if [["$STACK_STATUS" == "CREATE_COMPLETE" || "$STACK_STATUS" == "UPDATE_COMPLETE"]]; then
+            echo "KafkaStack deployed successfully"
+          else
+            echo "KafkaStack deployment is Failed"
+            exit 1
+          fi
+            
+
